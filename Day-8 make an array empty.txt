@@ -1,0 +1,13 @@
+var a=['h','e','l','l','o'];
+let v=a.length;
+for(let i=0;i < v;i++) {
+    a.pop()
+    console.log(a,i)
+}
+
+Note: instead of variable v just check this and note what happens
+for(let i=0;i < a.length;i++) {
+    a.pop()
+    console.log(a,i)
+}
+every time the loop iterates , the value of  a.length is also changed and hen

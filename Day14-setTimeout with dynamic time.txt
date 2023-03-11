@@ -1,0 +1,12 @@
+function timer(){
+let count =10;
+    for(let i=10;i>0;i--){
+    setTimeout(()=>{
+	console.log(count--);
+    },i * 10000)
+}
+}
+timer();
+
+1s = 1000ms
+10s = 10000ms

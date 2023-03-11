@@ -1,0 +1,29 @@
+let arr = [2, "b", 4, "d", 3, "a", "c", "e", 5, 1];
+let numArr = [];
+let alphaArr=[];
+arr.forEach((elem)=>{
+if(Number.isInteger(elem)== true){
+numArr.push(elem)
+}else{
+alphaArr.push(elem);
+}
+})
+
+let newArr= [...numArr, ...alphaArr];
+console.log(newArr);
+
+
+2) updated one
+let arr = [2, "12", 4, "d", 3, "a", "c", "e", 5, 1];
+let numArr = [];
+let alphaArr=[];
+for(let i in arr){
+    console.log(typeof arr[i],isNaN(arr[i]))
+    if(Number.isInteger(arr[i]) == true || isNaN(arr[i]) == false){
+        numArr.push(arr[i])
+    } else{
+        alphaArr.push(arr[i])
+    }
+}
+let newArr = [...numArr]
+console.log(newArr)

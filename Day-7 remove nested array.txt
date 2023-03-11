@@ -1,0 +1,40 @@
+this is done by me
+
+let arr=[1,2,['a','b',[3,4,[9,['c','d']]]],[5,6]]
+let b=[];
+    arr.forEach((item) =>{
+       if(Array.isArray(item)){
+          removeArray(item);
+       }else {
+           b.push(item)
+       }
+    });
+function removeArray(item){
+    for(let i=0;i < item.length;i++){
+        if(Array.isArray(item[i])){
+            removeArray(item[i]);
+        } else {
+        b.push(item[i])
+        }
+    }
+    
+}
+console.log(b)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+this is done by suryakumar
+var arr = [1,2,['a','b',[3,4,[9,['c','d']]]],[5,6]];
+ var newArray = [];
+ function flattenArray(arr){
+     arr.forEach(ele=>{
+         if(Array.isArray(ele)){
+             flattenArray(ele)
+         }
+         else{
+           newArray.push(ele)
+         }
+     })
+ }
+
+flattenArray(arr);
+console.log(newArray)	

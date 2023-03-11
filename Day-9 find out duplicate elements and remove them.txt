@@ -1,0 +1,29 @@
+Solution 1:-
+let count =0;
+let a= [1,2,4,2,5,67,5];
+for(let i=0;i<a.length;i++){
+    for(j=i+1;j<a.length;j++){
+        if(a[i]==a[j])
+        {
+            count++;
+            console.log(a[i]+ 'repeated', count+1)
+            console.log(a.splice(j,1));
+            console.log(a)
+        }
+        count=0;
+    }
+}
+
+Solution 2:-
+let arr= [1,2,3,4,2,3];
+function getUnique(arr){
+let uniqueArr=[];
+for(let i of arr){
+if(uniqueArr.indexOf(i) === -1){
+uniqueArr.push(i);
+}
+}
+return  uniqueArr;
+}
+let uniqueValues = getUnique(arr);
+console.log('values',uniqueValues);
