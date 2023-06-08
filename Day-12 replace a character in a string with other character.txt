@@ -1,0 +1,3 @@
+const strin = "Mr red team has won the red badge";
+const result = strin.split('red').join('blue');
+console.log(result);

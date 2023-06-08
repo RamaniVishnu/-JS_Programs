@@ -1,0 +1,38 @@
+To find the element that is present only once in an array
+let a="faacddd6aa";
+let b= a.split("");
+let c=[];
+let d=[];
+let count=0;
+for(let i=0;i<b.length;i++){
+    for(j=i+1;j<b.length;j++){
+        if(b[i] == b[j]){
+            count++;
+            c.push(b[i]);
+        }
+    }
+    if(count==0){
+        if(c.includes(b[i]) != true){
+        d.push(b[i]);
+        }
+    }
+    count =0;
+}
+console.log(d);
+
+
+Solution 2:
+let arr= "faacddd6aa";
+let newval =arr.split("")
+console.log(newval)
+function getUnique(arr){
+let uniqueArr=[];
+for(let i of arr){
+if(uniqueArr.indexOf(i) === -1){
+uniqueArr.push(i);
+}
+}
+return  uniqueArr;
+}
+let uniqueValues = getUnique(newval);
+console.log('values',uniqueValues);

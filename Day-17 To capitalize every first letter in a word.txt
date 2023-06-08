@@ -1,0 +1,22 @@
+with for loop
+const a= "welcome to programiz!";
+const updated= a.split(" ");
+for(i in updated) {
+   updated[i] = updated[i].charAt(0).toUpperCase() + updated[i].slice(1); 
+}
+console.log(updated)
+
+with map
+const a= "welcome to programiz!";
+const updated= a.split(" ");
+const u = updated.map((elem)=>elem.charAt(0).toUpperCase() + elem.slice(1))
+console.log(u.join(" "))
+
+Input from the user
+function Conversion(c){
+const updated= c.split(" ");
+const u = updated.map((elem)=>elem.charAt(0).toUpperCase() + elem.slice(1))
+ return alert(u.join(" "));
+}
+const c = prompt("Enter the string: ");
+Conversion(c);

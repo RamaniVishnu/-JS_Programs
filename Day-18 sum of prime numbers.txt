@@ -1,0 +1,52 @@
+Q2. 2) one coding question -> input->"my name is xyz" output ->"My Name Is Xyz" need to uppercase first letter of all words in a sentence.
+Add Answer
+Q3. React js question is to make a component which has input tag when we type so auto suggestion will be shown this list of countries interviewer provided to take reference . when we type as per key pressed the matching prefix must be suggested
+Add Answer
+Collapse 
+02
+Round
+Technical Round
+Q1. 1) coding question range is given example 2 to 10 in this range find 3 largest prime number sum. and for this 2 to 10 range exmaple is 3, 5 , 7 sum=15.
+
+
+
+function checkPrime(numberToCheck)
+    {
+        if(numberToCheck == 1)
+        {
+            return false;
+        }
+        for (let i = 2; i * i <= numberToCheck; i++)
+        {
+            if (numberToCheck % i == 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+ 
+    // Method to iterate the loop from l to r
+    // If prime number detects, sum the value
+    function primeSum(l, r)
+    {
+        let sum = 0;
+        for (let i = r; i >= l; i--)
+        {
+ 
+            // Check for prime
+            let isPrime = checkPrime(i);
+            if (isPrime)
+            {
+ 
+                // Sum the prime number
+                sum = sum + i;
+            }
+        }
+        return sum;
+    }
+     
+    let l = 1, r = 5;
+  
+    // Call the method with l and r
+    console.log(primeSum(l, r));

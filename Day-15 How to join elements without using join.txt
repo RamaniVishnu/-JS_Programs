@@ -1,0 +1,19 @@
+1) For string  and array
+let c ="Hello World";
+let c =['H','e','l','l','o'," ","W","o","r","l","d"];
+let e="";
+for(let i=c.length;i>=0;i--){
+    if(c[i] == undefined){
+        continue;
+    }
+    e+=c[i];
+}
+console.log('e==',e)
+
+2) Updated one
+let a =["W","E","l","c"," ","H"];
+let combine="";
+for(let i of a){
+    combine +=i
+}
+console.log(combine)

@@ -1,0 +1,90 @@
+1)this works fine for string in an array
+	let a = ['a', 'a', 'b', 'a', 'c', 'a'];
+	let c = [];
+	
+	for (let i = 0; i < a.length; i++) {
+	  let element = a[i];
+	  if (c[element]) {
+	    c[element] += 1;
+	  } else {
+	    c[element] = 1;
+	  }
+	}
+	console.log(c)
+	
+	//to understand above 2nd program
+let d=['a','b'];
+d['c']=5;
+d['2']=3;
+d['b']=7;
+d[2]=8
+d['']=9
+d[null]=0
+d[undefined]=1
+//d[NAN]=10 ithu matum error throw pannuthu not defined nu
+console.log(d)//o/p- [ 'a', 'b', 8, c: 5, b: 7, '': 9, null: 0, undefined: 1 ]
+
+2)exact program, works for both string and integer
+let arr = ['1', 2, 8, 3, 2, 2, 2, 5, 1];     
+        
+    //Calculate length of array arr    
+    let length = arr.length;    
+        
+    //Array fr will store frequencies of element    
+    let fr=[];
+     console.log(fr)
+    let visited = 0;    
+        
+    for(let i = 0; i < length; i++){    
+        let count = 1;    
+        for(let j = i+1; j < length; j++){    
+            if(arr[i] == arr[j]){    
+                count++;    
+                //To avoid counting same element again    
+                fr[j] = visited;    
+            }    
+        }    
+        if(fr[i] != visited)    
+            fr[i] = count;    
+    }    
+        
+    //Displays the frequency of each element present in array    
+    console.log(" Element | Frequency");    
+    for(let i = 0; i < length; i++){    
+        if(fr[i] != visited){    
+            console.log(arr[i] ,fr[i]);    
+        }    
+    }
+
+3) simple solution that works for strings and numbers
+let arr= [1,2,3,72,3,2];
+let count={};
+arr.forEach((elem)=>{
+if(count[elem]){
+count[elem]++;
+}else {
+count[elem]=1;
+}
+})
+console.log(count)
+    
+4) unique and frequency in one program
+let a= [2,-4,5,-3,6,7,8,10,2,5,1];
+let count={}
+let arr=[];
+function uniq(){
+a.forEach((elem)=>{
+  if(count[elem]){
+      count[elem]++;
+  }else {
+      count[elem] =1;
+  }
+})
+for(let i in count){
+    if(count[i] == 1){
+        arr.push(i)
+    }
+}
+return arr;
+}
+console.log(uniq())

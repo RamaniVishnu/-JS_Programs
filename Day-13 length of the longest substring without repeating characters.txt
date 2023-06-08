@@ -1,0 +1,14 @@
+let str = "abbbcabcdefef";
+
+let empty =[];
+
+let str1 = str.split("");
+
+str.forEach((elem)=>
+if(empty.indexOf(elem) === -1)
+{
+empty.push(elem)
+}
+)
+
+console.log(empty.length)

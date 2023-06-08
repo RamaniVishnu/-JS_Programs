@@ -1,0 +1,29 @@
+1)let a=[2,3,1,6,0,0.9,8,4];
+for(let i=0;i<a.length;i++){
+    for(let j=i+1;j < a.length;j++){
+        if(a[i] > a[j]) {
+            let k= a[j];
+            a[j] = a[i];
+            a[i] = k;
+            console.log('inside a=', a)
+        }
+    }
+}
+console.log(a)
+
+2) asc order based on age
+let people= [
+    {name:"asha",age:20 },
+    {name:"hema",age:5 },
+    {name:"malar",age:10 }
+];
+for(let i=0;i<people.length;i++){
+    for(let j=i+1;j<people.length;j++){
+    if(people[i].age > people[j].age){
+        let k = people[j];
+        people[j] = people[i];
+        people[i]= k;
+    }
+    }
+}
+ console.log(people)

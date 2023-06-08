@@ -1,0 +1,20 @@
+1)using split, reverse and join
+let ReverseString = () =>  {
+  const element = prompt("enter the string",'');
+let value='';
+if(element != '' || null ) {
+  value = element;
+  console.log('string=',value);
+}
+let valueRev = value.split('');
+let a = valueRev.reverse().join("");
+console.log(a);
+};
+
+2)vanilla js
+var a="hello";
+let b=[]
+for(let i=a.length;i>=0;i--){
+    b.push(a[i])
+}
+console.log(b.join(''))
