@@ -1,0 +1,108 @@
+"0"==0 //true
+"0"==[]//false
+0==[]//true
+explanation https://www.freecodecamp.org/news/explaining-the-best-javascript-meme-i-have-ever-seen/
+vvvvimp => 
+https://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons
+vvvimp => 0, negative values, negative decimal value <=""(empty string) will give true
+1,positive values,positive decimal values <=""(empty string) will give false
+A)Verification Of Types
+1)to check number, if number returns true or else false.
+Note:-if number is present in the form of string,gives false
+let a=10;
+Number.isInteger(a);
+output : true
+2)if it is number in the form of string also gives false and alphabets gives true
+isNaN(123)         // false
+isNaN('123')       // false
+isNaN('1e10000')   // false (This translates to Infinity, which is a number)
+isNaN('foo')       // true
+isNaN('10px')      // true
+isNaN('')          // false
+isNaN(' ')         // false
+isNaN(false)       // false
+
+let a="10";
+isNaN(a)
+output: false
+
+3) to check string
+let a="abc"
+isNaN(a);
+output: true
+
+4) to check it is an array
+let a=["1","a"];
+Array.isArray(a);
+output: true
+
+5) to check if it is an object
+let a={
+abc:"123"
+}
+Array.isArray(a)
+output: false
+
+
+B)Conversions:-
+1) How to convert a number into string
+let a=10;
+let b=a.toString();
+console.log(b) //"10"
+
+2) How to convert number string into number
+to use "-" operator, parseInt
+let a="100"-0
+console.log(typeof a,a) // number,100, 
+let a="100"
+let b =parseInt(a)
+console.log(typeof b,b)//number , 100
+
+3)convert string to array
+let a="puss's in the boots";
+let b=Array.from(a)
+console.log(b)
+
+
+4) to convert an array to object
+a) with customised keys
+['a', 'b', 'c'].reduce((a, v) => ({ ...a, [v]: v}), {}) 
+b)spread operator
+let a=['a', 'b', 'c'];
+let b ={...a} 
+console.log(b)
+c)Object.assign(target,source)
+let a =["a","b","c"];
+let b =Object.assign({},a)
+console.log(b) // { '0': 'a', '1': 'b', '2': 'c' }
+
+4) to convert object to an array
+a) to want keys -> Object.keys()
+let myObj = {
+  name: "your name",
+  address: "your address",
+  age: "my Age",
+};
+let updated = Object.keys(myObj);
+console.log(updated) //[ 'name', 'address', 'age' ]
+b) to want values -> Object.values()
+let myObj = {
+  name: "your name",
+  address: "your address",
+  age: "my Age",
+};
+let updated = Object.values(myObj);
+console.log(updated) //[ 'your name', 'your address', 'my Age' ]
+
+c) to get complete object as array
+let myObj = {
+  name: "your name",
+  address: "your address",
+  age: "my Age",
+};
+let updated = Object.entries(myObj);
+console.log(updated) // [
+  [ 'name', 'your name' ],
+  [ 'address', 'your address' ],
+  [ 'age', 'my Age' ]
+]
