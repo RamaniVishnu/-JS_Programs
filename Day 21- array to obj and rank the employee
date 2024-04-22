@@ -1,0 +1,24 @@
+let arr = [
+    ['manager', 40],
+    ['reporting manager', 1],
+    ['developer', 10],
+    ['tester', 3],
+    ['support', 4],
+    ['analyst', 4]
+];
+arr.sort((a, b) => b[1] - a[1]);
+let rank = 1;
+let newArr =[];
+arr.forEach((elem, index, array) => {
+// If current score is different from the previous element's score, update the rank
+    if (index > 0 && elem[1] !== array[index - 1][1]) {
+        rank = index + 1;
+    }
+    newArr.push({
+        name: elem[0],
+        score: elem[1],
+        rank: rank
+    });
+});
+
+console.log(newArr);
