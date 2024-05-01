@@ -33,3 +33,20 @@ fact(num - 1);
 return result;
 }
 console.log(factorial(5));
+
+
+further updation
+let output=1;
+function factorial(val){
+if(val < 2) return 1;
+return output=val*factorial(val - 1);
+}
+console.log(factorial(1));
+
+(or)
+
+function factorial(val,output=1){
+if(val < 2) return output;
+return factorial(val -1,val*output);
+}
+console.log(factorial(5));
