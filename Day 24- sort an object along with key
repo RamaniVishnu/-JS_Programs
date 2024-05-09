@@ -1,0 +1,43 @@
+my code
+let a = {
+    teenage: {"name": "ramani", "age": 25},
+    toddler: {"name": "rama", "age": 20},
+    aged: {"name": "ram", "age": 40}
+};
+let newArr = Object.keys(a);
+for (let i = 0; i < newArr.length; i++) {
+    for (let j = 0; j < newArr.length; j++) {
+        if (a[newArr[i]].age < a[newArr[j]].age) {
+            let temp = newArr[i];
+            newArr[i] = newArr[j];
+            newArr[j]=temp;
+        }
+    }
+}
+let b={};
+for(let key of newArr){
+    console.log(key,b[key])
+    b[key] = a[key]
+}
+console.log(b);
+
+
+
+//updated using sort
+function sortObjectByAge(obj) {
+    let sortedKeys = Object.keys(obj).sort((key1, key2) => obj[key1].age - obj[key2].age);
+    let sortedObj = {};
+    for (let key of sortedKeys) {
+        sortedObj[key] = obj[key];
+    }
+    return sortedObj;
+}
+
+let a = {
+    teenage: {"name": "ramani", "age": 25},
+    toddler: {"name": "rama", "age": 20},
+    aged: {"name": "ram", "age": 40}
+};
+
+let sortedA = sortObjectByAge(a);
+console.log(sortedA);
