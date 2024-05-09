@@ -1,0 +1,20 @@
+let count =0;
+function task(...values){
+return ()=>{
+count++;
+if(count > values.length - 1){
+count =0;
+return values[values.length - 1];
+} else {
+return values[count - 1];
+}
+}
+}
+const hello=task("1","2","3","4");
+console.log(hello());
+console.log(hello());
+console.log(hello());
+console.log(hello());
+console.log(hello());
+console.log(hello());
+console.log(hello());
