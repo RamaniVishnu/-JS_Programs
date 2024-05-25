@@ -1,0 +1,13 @@
+let a="Hello raman How are you";
+let b=a.split(' ');
+console.log(b)
+let obj={};
+let length =0;
+function Longest(arr){
+arr.forEach((elem)=>{
+obj[elem] = elem.length;
+length = Math.max(elem.length,length);
+})
+return Object.keys(obj).filter((elem)=>obj[elem] === length)
+}
+console.log(Longest(b));
