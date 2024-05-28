@@ -18,3 +18,20 @@ console.log(hello());
 console.log(hello());
 console.log(hello());
 console.log(hello());
+
+
+enhanced
+function Closure(...values){
+   let count =-1;
+    return ()=>{
+        count++;
+        if(count === values.length) count =0;
+        return values[count];     
+    }
+}
+const demo=Closure('1','2','3','4');
+console.log(demo());
+console.log(demo());
+console.log(demo());
+console.log(demo());
+console.log(demo());
