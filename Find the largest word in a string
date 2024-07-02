@@ -11,3 +11,22 @@ length = Math.max(elem.length,length);
 return Object.keys(obj).filter((elem)=>obj[elem] === length)
 }
 console.log(Longest(b));
+
+
+Enhanced code
+let a="Hello raman How are you";
+function largestWord(str){
+    if(str.length < 1){
+        return 'enter a valid input'
+    }
+    let max=-1;
+    let result=[];
+    str.split(' ').forEach((elem)=>{
+            if(elem.length >= max){
+            max = elem.length;
+            result.push(elem)
+            }
+    })
+    return result;
+}
+console.log('final...',largestWord(a));
