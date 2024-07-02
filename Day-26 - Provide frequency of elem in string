@@ -1,0 +1,13 @@
+// let str="abbccccddeeefab";
+let str="abc";
+let arr=[];
+let result='';
+for(let i=0;i<str.length;i++){
+    arr.push(str[i])
+    if(str[i + 1] !== str[i]){
+        let len = arr.length;
+        result+=len + arr[0];
+        arr.length = 0;
+    }
+}
+console.log('result',result);
