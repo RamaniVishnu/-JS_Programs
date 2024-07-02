@@ -1,3 +1,4 @@
+1)to get output=>{ 'Alice 01': 200, 'Bob 01': 150, 'Charlie 01': 30, 'Alice 02': 120 }
 const transcations=[
 {cust:'Alice',amt: 120,date: '2024-01-01'},
 {cust:'Bob',amt: 50,date: '2024-01-01'},
@@ -6,21 +7,51 @@ const transcations=[
 {cust:'Bob',amt: 100,date: '2024-01-03'},
 {cust:'Alice',amt: 120,date: '2024-02-01'},
 ];
-
 function Cal(transcations){
-    let temp={};
-    let result=transcations.reduce((resulttrans,currenttrans)=>{
-        console.log("resulttrans===",resulttrans,temp)
-        let month =currenttrans.date.slice(5,7);
-        let id=currenttrans.cust+' '+month;
-        if(temp[id]){
-            temp[id]+=currenttrans.amt
+    let result=transcations.reduce((acc,curr)=>{
+        let month =curr.date.slice(5,7);
+        let id=curr.cust+' '+month;
+        if(acc[id]){
+            acc[id]+=curr.amt
         }else{
-            temp[id]=currenttrans.amt
+            acc[id]=curr.amt
         }
-        return {...temp};
+        return acc;
     },{})
     return result;
-    
 }
 console.log("final val====",Cal(transcations));
+
+
+2)to get output => {
+  Alice: { '2024-01': 200, '2025-01': 20, '2024-02': 120 },
+  Bob: { '2024-01': 150 },
+  Charlie: { '2024-01': 30 }
+}
+
+
+const transcations=[
+{cust:'Alice',amt: 120,date: '2024-01-01'},
+{cust:'Alice',amt: 20,date: '2025-01-01'},
+{cust:'Bob',amt: 50,date: '2024-01-01'},
+{cust:'Alice',amt: 80,date: '2024-01-02'},
+{cust:'Charlie',amt: 30,date: '2024-01-02'},
+{cust:'Bob',amt: 100,date: '2024-01-03'},
+{cust:'Alice',amt: 120,date: '2024-02-01'},
+];
+let output=transcations.reduce((acc,curr)=>{
+   let month = curr.date.slice(0,7);
+   let id = curr.cust;
+   if(!acc[id]){
+        acc[id]={}
+   } 
+   if(!acc[id][month]){
+       acc[id][month] =0;
+   }
+   acc[id][month] += curr.amt;
+   return acc;
+},{})
+console.log(output)
+
+
+
