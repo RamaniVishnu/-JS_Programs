@@ -36,5 +36,53 @@ console.log(longestWord("---")); //Please provide a valid input
 console.log(longestWord("%%%%")); //Please provide a valid input
 console.log(longestWord("100% pass mark")); //pass,mark
 
+//enhanced code when you have more than one word
+let sentence ="Write , Edit and Run your  code using JS Online Compil ";
+
+function largestWord(words){
+    if(!words || words.trim().length ===0 || !/[a-zA-Z0-9]/.test(words)){
+        return 'invalid input';
+    }
+    let stmt = words.split(" ");
+    let largest =[];
+    let max=0;
+    for(let word of stmt){
+        let wordlen = word.length;
+        if(wordlen > max){
+            largest =[word];
+            max=wordlen;
+        }else if(wordlen === max){
+        largest.push(word)
+        }
+    }
+    return `largest word is ${largest}`;
+}
+console.log(largestWord(sentence))
+
+(or) 
+using splice
+let sentence ="Write , Edit Online and Run your code using JS  Compil ";
+function largestWord(words){
+    if(!words || words.trim().length ===0 || !/[a-zA-Z0-9]/.test(words)){
+        return 'invalid input';
+    }
+    let stmt = words.split(" ");
+    let largest =[];
+    for(let i=0;i<stmt.length;i++){
+        if(i==0){
+       largest.push(stmt[i])
+        }
+        else {
+            if(stmt[i].length > largest[0].length) {
+                largest.splice(0,largest.length,stmt[i]);
+            } else if(stmt[i].length === largest[0].length){
+                largest.splice(1,0,stmt[i])
+            }
+        }
+    }
+    return `largest word is ${largest}`;
+}
+console.log(largestWord(sentence))
+
 
 
