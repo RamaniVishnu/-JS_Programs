@@ -27,3 +27,29 @@ return  uniqueArr;
 }
 let uniqueValues = getUnique(arr);
 console.log('values',uniqueValues);
+
+enhanced code 2025
+let arr= [1,2,3,4,2,3];
+function getUnique(arr){
+let result =arr.reduce((acc,curr)=>{
+if(!acc.includes(curr)){
+acc.push(curr);
+}
+return acc;
+},[]);
+return result;
+}
+console.log(getUnique(arr));
+
+(or)
+let arr= [1,2,3,4,2,3];
+function getUnique(arr){
+let result =[];
+for(let elem of arr){
+if(!result.includes(elem)){
+result.push(elem);
+}
+}
+return result;
+}
+console.log(getUnique(arr));
