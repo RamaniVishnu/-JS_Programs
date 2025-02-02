@@ -39,19 +39,21 @@ const transcations=[
 {cust:'Bob',amt: 100,date: '2024-01-03'},
 {cust:'Alice',amt: 120,date: '2024-02-01'},
 ];
-let output=transcations.reduce((acc,curr)=>{
-   let month = curr.date.slice(0,7);
-   let id = curr.cust;
-   if(!acc[id]){
-        acc[id]={}
-   } 
-   if(!acc[id][month]){
-       acc[id][month] =0;
-   }
-   acc[id][month] += curr.amt;
-   return acc;
-},{})
-console.log(output)
+function cal(transcation){
+  let output=  transcation.reduce((acc,curr)=>{
+        let uniqueDate = curr.date.slice(0,7);
+        if(!acc[curr.cust]){
+            acc[curr.cust] = {}
+        }
+        if(!acc[curr.cust][uniqueDate]){
+             acc[curr.cust][uniqueDate] =0; 
+        } 
+        acc[curr.cust][uniqueDate]+=curr.amt;
+        return acc;
+    },{})
+    return output;
+}
+console.log(cal(transcations))
 
 
 
