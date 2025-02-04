@@ -1,0 +1,47 @@
+Question:
+1)what is the difference between these two ways 
+a)let fruit=[]; 
+fruit =['apple']; 
+console.log(fruit);
+b)let fruit=[];
+fruit.push('apple'); 
+console.log(fruit);
+
+Answer:
+Both code snippets achieve the same end result of creating an array containing the string 'apple',
+but they differ in their approach and some subtle aspects:
+
+Code Snippet A
+let fruit = [];
+fruit = ['apple'];
+console.log(fruit);
+i)Initialization and Reassignment: Initially, fruit is declared as an empty array [], but in the next line,
+it is reassigned to a new array ['apple'].
+ii)Creates a New Array: The line fruit = ['apple'] creates a new array and assigns it to the variable fruit,
+replacing the initial empty array.
+
+Code Snippet B
+let fruit = [];
+fruit.push('apple');
+console.log(fruit);
+i)Initialization and Mutation: Here, fruit is declared as an empty array [], and then the push method is used 
+to add 'apple' to the existing array.
+ii)Mutates the Existing Array: The push method modifies the original array by adding an element to it without
+creating a new array.
+
+Key Differences
+i)Reassignment vs. Mutation:
+In Snippet A, the original empty array is replaced with a new array containing ['apple'].
+In Snippet B, the original empty array is directly modified by adding 'apple'.
+
+ii)Performance:
+Snippet A involves creating a new array, which can be slightly less efficient if repeated many times.
+Snippet B directly modifies the existing array, which can be more efficient for large arrays or frequent modifications.
+
+iii)Intended Use:
+Snippet A is more suited if you want to completely replace the array with a new one.
+Snippet B is more suited if you want to build or modify the existing array dynamically.
+
+Summary
+Both snippets produce the same output but employ different techniques to achieve it. Snippet A replaces the entire array,
+while Snippet B modifies the existing array.
