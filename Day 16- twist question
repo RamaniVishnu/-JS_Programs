@@ -4,7 +4,7 @@
 explanation https://www.freecodecamp.org/news/explaining-the-best-javascript-meme-i-have-ever-seen/
 vvvvimp => 
 https://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons
-vvvimp => 0, negative values, negative decimal value <=""(empty string) will give true
+vvvimp => 0, negative values, negative decimal value <=""(empty string) will give true because of coersion(will convert the empty string to number which gives 0);
 1,positive values,positive decimal values <=""(empty string) will give false
 A)Verification Of Types
 1)to check number, if number returns true or else false.
