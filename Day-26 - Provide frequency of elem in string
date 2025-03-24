@@ -11,3 +11,26 @@ for(let i=0;i<str.length;i++){
     }
 }
 console.log('result',result);
+
+
+using reduce
+let str = "abbccccddeeefab";
+function getFrequency(val) {
+  let result = '';
+  let count = 1;
+  val.split('').reduce((prev, curr, index, array) => {
+    if (curr === prev) {
+      count++;
+    } else {
+      result += prev + count;
+      count = 1;
+    }
+    if (index === array.length - 1) {
+      result += curr + count;
+    }
+    return curr;
+  });
+  return result;
+}
+console.log(getFrequency(str));
+
