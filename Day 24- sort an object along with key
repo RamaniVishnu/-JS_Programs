@@ -21,7 +21,24 @@ for(let key of newArr){
 }
 console.log(b);
 
-
+//updated my code 
+let obj = {
+    teenage: {"name": "ramani", "age": 25},
+    toddler: {"name": "rama", "age": 20},
+    aged: {"name": "ram", "age": 40}
+};
+let newObj={};
+let count = Object.keys(obj);
+for(let i=0;i<count.length;i++){
+    for(let j=1;j<count.length;j++){
+    if(obj[count[i]].age > obj[count[j]].age){
+        let k = obj[count[i]];
+        newObj[count[j]] = obj[count[j]];
+        newObj[count[i]] = k;
+    }
+    }
+}
+console.log(newObj)
 
 //updated using sort
 function sortObjectByAge(obj) {
