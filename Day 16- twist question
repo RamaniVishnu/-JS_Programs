@@ -43,6 +43,12 @@ abc:"123"
 Array.isArray(a)
 output: false
 
+6) to check if it is an object and not an array or string or number or boolean
+let a={}
+console.log(typeof a === "object" && !Array.isArray(a)); // return true only if it is an object and false of rest of the types
+let b=[]
+console.log(typeof b === "object" && Array.isArray(b)); //return true only if it is array and false for rest of the types
+
 
 B)Conversions:-
 1) How to convert a number into string
