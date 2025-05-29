@@ -16,3 +16,17 @@ if(value.length < 3) return true;
 return value[0] === value[value.length -1] ? palindrome(value.slice(1,value.length - 1)) : false;
 }
 console.log(palindrome("deified"));
+
+
+
+enhanced this code
+const isPalindrome = str => {
+    if (!str) return false; // Handle empty input
+    const strLen = str.length;
+    if (strLen < 3) return true;
+    return str[0] === str[strLen - 1] && isPalindrome(str.slice(1, strLen - 1));
+};
+console.log(isPalindrome('deified')); // true
+console.log(isPalindrome('racecar')); // true
+console.log(isPalindrome('hello'));   // false
+console.log(isPalindrome(''));        // false
