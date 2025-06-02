@@ -20,3 +20,29 @@ for(let i=0;i< a.length; i++) {
         }
     }
 }
+
+
+exact working code for triplets
+function findAllPairsWithIndexes1(arr, target) {
+    let pairs = [];
+    let seenIndexes = new Set(); // Track unique index pairs
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] + arr[j] === target) {
+                let indexKey = `${i},${j}`; // Unique key based on indexes
+
+                // Ensure the same number pair isn't added twice with different indexes
+                if (!seenIndexes.has(indexKey)) {
+                    seenIndexes.add(indexKey);
+                    pairs.push({ pair: [arr[i], arr[j]], indexes: [i, j] });
+                }
+            }
+        }
+    }
+
+    return pairs.length ? pairs : "No pairs found!";
+}
+
+// let a = [2, 4, 5, 3, 6, 7, 8, 10, 2, 5, 1];
+// let targetValue = 8;
+console.log(findAllPairsWithIndexes1(a, targetValue));
