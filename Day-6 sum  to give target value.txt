@@ -1,28 +1,3 @@
-Works fine even for negative number
-let a= [2,-4,5,-3,6,7,8,10,2,5,1];
-let a= [2,4,5,3,6,7,8,10,2,5,1];
-let targetValue = 8;
-for(let i=0;i< a.length; i++) {
-    for(let j=i+1;j< a.length; j++) {
-        if(a[i] > a[j]) {
-            let k= a[j];
-            a[j]= a[i];
-            a[i] = k;
-        } 
-    }
-}
-console.log(a)
-for(let i=0;i< a.length; i++) {
-    for(let j=i+1;j< a.length; j++) {
-        if(a[i] + a[j] + a[i+1] == targetValue) {
-            console.log(a[i],a[j],a[i+1]);
-            console.log('index values=', i , j ,i+1);
-        }
-    }
-}
-
-
-exact working code for triplets
 function findAllPairsWithIndexes1(arr, target) {
     let pairs = [];
     let seenIndexes = new Set(); // Track unique index pairs
