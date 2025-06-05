@@ -1,0 +1,21 @@
+let vote =["B","D","A","E","A","B","A","C","B","A","B"];
+let count={};
+let max=0;
+let result=[];
+vote.forEach((elem)=>{
+    if(count[elem]){
+        count[elem]++;
+    }
+    else {
+        count[elem] = 1;
+    }
+    if(count[elem] > max){
+        max = count[elem];
+    }
+})
+for(let i in count){
+    if(count[i] === max){
+        result.push(i)
+    }
+}
+console.log(result)
