@@ -1,0 +1,59 @@
+1) order matters
+function isBalanced(input) {
+  const stack = [];
+  const open = ['(', '{', '['];
+  const close = [')', '}', ']'];
+  const matches = {
+    ')': '(',
+    '}': '{',
+    ']': '[',
+  };
+  for (let char of input) {
+      console.log('charrrrrrrr',char)
+    if (open.includes(char)) {
+      stack.push(char);
+    } else if (close.includes(char)) {
+      if (stack.pop() !== matches[char]) {
+          console.log('else if in',char)
+        return false;
+      }
+    }
+  }
+  return stack.length === 0;
+}
+const test = "[{]}{}";
+console.log(isBalanced(test)); // false
+
+
+
+
+2)no matter of the order
+function hasEqualOpenCloseCounts(input) {
+  const counts = {
+    '(': 0,
+    ')': 0,
+    '{': 0,
+    '}': 0,
+    '[': 0,
+    ']': 0
+  };
+
+  for (let char of input) {
+    if (counts.hasOwnProperty(char)) {
+      counts[char]++;
+    }
+  }
+
+  return (
+    counts['('] === counts[')'] &&
+    counts['{'] === counts['}'] &&
+    counts['['] === counts[']']
+  );
+}
+
+// Example usage
+const test1 = "[{]}{}"; // true (matching counts)
+const test2 = "[{{}]";  // false (mismatched counts)
+console.log(hasEqualOpenCloseCounts(test1)); // true
+console.log(hasEqualOpenCloseCounts(test2)); // false
+
