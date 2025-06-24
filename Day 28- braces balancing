@@ -1,4 +1,5 @@
-1) order matters
+1)
+a) order matters, the code works if matches is in this format
 function isBalanced(input) {
   const stack = [];
   const open = ['(', '{', '['];
@@ -24,6 +25,33 @@ function isBalanced(input) {
 const test = "[{]}{}";
 console.log(isBalanced(test)); // false
 
+b) order matters, the code works if matches is in this format
+let a = '[{]}{}';
+function bracesBalance(a) {
+    const openB = ['{', '[', '('];
+    const closeB = ['}', ']', ')'];
+    const stack = [];
+    const matches = {
+        '{': '}',
+        '[': ']',
+        '(': ')'
+    };
+
+    for (let elem of a) {
+        if (openB.includes(elem)) {
+            stack.push(elem);
+        } else if (closeB.includes(elem)) {
+            const lastOpen = stack.pop();
+            if (matches[lastOpen] !== elem) {
+                return false;
+            }
+        }
+    }
+
+    return stack.length === 0;
+}
+
+console.log(bracesBalance(a)); //true
 
 
 
