@@ -1,14 +1,19 @@
-let obj={};
-function sum(a,b){
-if(obj[a] == b || obj[b] == a){
-return 'value exsists';
-} else{
-obj[a] =b;
-return a+b;
+let obj = {};
+function SumOnce(a, b) {
+    // Create a key that is order-independent
+    let key = [a, b].sort((x, y) => x - y).join('-');
+
+    if (obj.hasOwnProperty(key)) {
+        return `value exists: ${obj[key]}`;
+    } else {
+        let sum = a + b;
+        obj[key] = sum;
+        return sum;
+    }
 }
-}
-console.log(sum(3,5));
-console.log(sum(3,5));
-console.log(sum(2,8));
-console.log(sum(8,2));
-console.log(sum(2,8));
+
+console.log(SumOnce(4, 3)); // 7
+console.log(SumOnce(2, 1)); // 3
+console.log(SumOnce(3, 4)); // value exists: 7
+console.log(SumOnce(1, 2)); // value exists: 3
+
