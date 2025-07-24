@@ -27,3 +27,27 @@ for(let i in arr){
 }
 let newArr = [...numArr]
 console.log(newArr)
+
+3) 
+let arr = [2, "b", 4, "d", 3, "a", "c", "e", 5, 1];
+let numArr = [];
+let alphaArr=[];
+let result=[];
+arr.forEach((elem)=>{
+if(Number.isInteger(elem)== true){
+numArr.push(elem)
+}else{
+alphaArr.push(elem);
+}
+})
+
+for(let i=0;i<arr.length;i++){
+    if(i < numArr.length) {
+        result.push(numArr[i])
+    }
+    if(i < alphaArr.length) {
+        result.push(alphaArr[i])
+    }
+}
+
+console.log(result);
