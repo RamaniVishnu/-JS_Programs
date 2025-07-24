@@ -1,57 +1,26 @@
 1)
 a) order matters, the code works if matches is in this format
-function isBalanced(input) {
-  const stack = [];
-  const open = ['(', '{', '['];
-  const close = [')', '}', ']'];
-  const matches = {
-    ')': '(',
-    '}': '{',
-    ']': '[',
-  };
-  for (let char of input) {
-      console.log('charrrrrrrr',char)
-    if (open.includes(char)) {
-      stack.push(char);
-    } else if (close.includes(char)) {
-      if (stack.pop() !== matches[char]) {
-          console.log('else if in',char)
-        return false;
-      }
-    }
-  }
-  return stack.length === 0;
-}
-const test = "[{]}{}";
-console.log(isBalanced(test)); // false
-
-b) order matters, the code works if matches is in this format
 let a = '[{]}{}';
-function bracesBalance(a) {
-    const openB = ['{', '[', '('];
-    const closeB = ['}', ']', ')'];
+function isBracesBalanced(input) {
     const stack = [];
+    const openBraces = ['(', '{', '['];
     const matches = {
-        '{': '}',
-        '[': ']',
-        '(': ')'
+        ')': '(',
+        '}': '{',
+        ']': '['
     };
-
-    for (let elem of a) {
-        if (openB.includes(elem)) {
-            stack.push(elem);
-        } else if (closeB.includes(elem)) {
-            const lastOpen = stack.pop();
-            if (matches[lastOpen] !== elem) {
+    for (let char of input) {
+        if (openBraces.includes(char)) {
+            stack.push(char);
+        } else if (char in matches) {
+            if (stack.length === 0 || stack.pop() !== matches[char]) {
                 return false;
             }
         }
     }
-
     return stack.length === 0;
 }
-
-console.log(bracesBalance(a)); //true
+console.log(isBracesBalanced(a));
 
 
 
@@ -78,8 +47,6 @@ function hasEqualOpenCloseCounts(input) {
     counts['['] === counts[']']
   );
 }
-
-// Example usage
 const test1 = "[{]}{}"; // true (matching counts)
 const test2 = "[{{}]";  // false (mismatched counts)
 console.log(hasEqualOpenCloseCounts(test1)); // true
