@@ -24,9 +24,9 @@ enhanced
 function Closure(...values){
    let count =-1;
     return ()=>{
+        if(count === values.length-1) count=-1;
         count++;
-        if(count === values.length) count =0;
-        return values[count];     
+        return values[count];
     }
 }
 const demo=Closure('1','2','3','4');
