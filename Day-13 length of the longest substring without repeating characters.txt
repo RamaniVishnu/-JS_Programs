@@ -12,3 +12,13 @@ empty.push(elem)
 )
 
 console.log(empty.length)
+
+//enhanced code
+let str = "abbbcabcdefef";
+let result=[]
+for(let elem of str){
+    if(!result.includes(elem)){
+        result.push(elem)
+    }
+}
+console.log(result.length)
