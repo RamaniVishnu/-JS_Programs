@@ -22,3 +22,33 @@ arr.forEach((elem, index, array) => {
 });
 
 console.log(newArr);
+
+//enhanced code
+  let arr = [
+    ['manager', 40],
+    ['reporting manager', 1],
+    ['developer', 10],
+    ['tester', 3],
+    ['support', 4],
+    ['analyst', 4]
+];
+
+arr.sort((a, b) => b[1] - a[1]);
+
+let rank = 1;
+let newArr = [];
+let prevScore = null;
+
+arr.forEach((elem, index) => {
+    if (prevScore !== null && elem[1] !== prevScore) {
+        rank++;
+    }
+    newArr.push({
+        name: elem[0],
+        score: elem[1],
+        rank: rank
+    });
+    prevScore = elem[1]; 
+});
+
+console.log(newArr);
