@@ -10,3 +10,12 @@ timer();
 
 1s = 1000ms
 10s = 10000ms
+
+for(var i=10;i>0;i--){
+    function x(y){
+    setTimeout(()=>{
+        console.log(y)
+    },(11-y)* 1000)
+    }
+    x(i)
+}
