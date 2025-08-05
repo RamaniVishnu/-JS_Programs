@@ -56,4 +56,45 @@ function cal(transcation){
 console.log(cal(transcations))
 
 
+//enhanced code
+const transactions = [
+  { cust: 'Alice', amt: 120, date: '2024-01-01' },
+  { cust: 'Alice', amt: 1, date: '2024-01-01' },
+  { cust: 'Bob', amt: 50, date: '2024-01-01' },
+  { cust: 'Alice', amt: 80, date: '2025-01-02' },
+  { cust: 'Charlie', amt: 30, date: '2024-01-02' },
+  { cust: 'Bob', amt: 100, date: '2024-01-03' },
+  { cust: 'Alice', amt: 120, date: '2024-02-01' },
+];
+
+
+function demo(data) {
+  return data.reduce((acc, curr) => {
+    const { cust, amt, date } = curr;
+    const [year, month] = date.split('-');
+
+    if (!acc[cust]) acc[cust] = {};
+    if (!acc[cust][year]) acc[cust][year] = {total:0};
+    acc[cust][year].total+=curr.amt
+    if (!acc[cust][year][month]) acc[cust][year][month] = 0;
+
+    acc[cust][year][month] += amt;
+
+    return acc;
+  }, {});
+}
+
+console.log(demo(transactions));
+
+
+output is {
+  Alice: {
+    '2024': { total: 241, '01': 121, '02': 120 },
+    '2025': { total: 80, '01': 80 }
+  },
+  Bob: { '2024': { total: 150, '01': 150 } },
+  Charlie: { '2024': { total: 30, '01': 30 } }
+}
+
+
 
