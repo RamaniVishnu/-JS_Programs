@@ -1,0 +1,146 @@
+1)performace optimisation
+a)avoid unnecessary computed and watch
+b)use key in v-for
+c)lazy loading using routes or component
+d)open source like lighthouse,webpagetest
+e)attributes like async,defer
+
+
+2)features introduced in vue 3
+a)Teleport
+b)Fragment
+c)Suspense
+d)Performance update proxy based rather than object.defineProperty
+e)composition api
+f)lifecycle hooks additional for debugging onRenderTracked and onRenderTriggered
+
+3)vue 3 migration steps
+a)nearest version 2.7
+b)this binding
+c)remove filters used
+d)update syntax
+e)Migrate core layout + router first,Then migrate each feature/module,Test at each step.
+
+4)composition vs option api
+ When to Use Which
+✅ Choose Options API when:
+The component is small/simple.
+You’re working with a team of beginners.
+You don’t need advanced TypeScript support.
+The app is mostly UI markup with little complex logic.
+
+✅ Choose Composition API when:
+The component is large/complex.
+You need to reuse logic across components.
+You’re writing a library or plugin.
+You need strong TypeScript support.
+You want better code organization for scaling.
+
+5)error handling
+a)Global Error Handler (app.config.errorHandler)
+Catches uncaught errors in:
+Component rendering
+Event handlers
+Watchers
+Lifecycle hooks
+
+const app = createApp(App);
+app.config.errorHandler = (err, instance, info) => {
+  console.error('Vue error:', err, info);
+  // send to error logging service
+};
+
+b)route error handling
+router.onError(err => {
+  console.error('Router error:', err);
+});
+
+
+6)routing
+a)beforeEach
+Runs before every route change.
+Can cancel, redirect, or allow navigation.
+b)beforeResolve
+Runs right before navigation is confirmed (after in-component guards and async route components are resolved).
+Good for waiting on final async data.
+c)afterEach
+Runs after every navigation — can’t stop navigation.
+Great for analytics/logging.
+d)Per-Route Guards
+Defined in route records.
+{
+  path: '/admin',
+  component: Admin,
+  beforeEnter: (to, from) => {
+    if (!isAdmin) return '/login';
+  }
+}
+✅ Good for module-specific authentication.
+
+7)vuex vs pinia
+1️⃣ Virtual DOM vs HMR — Different Purposes
+Virtual DOM
+Runs inside your app in the browser.
+Compares the new UI state to the previous one (diffing).
+Updates only the parts of the DOM that have changed.
+Works after your app code has been compiled and is running.
+
+📌 Analogy:
+Virtual DOM is like a smart painter who touches up only the parts of the wall that need new paint — instead of repainting the whole wall.
+
+HMR
+Runs in the development build process (Vite/Webpack).
+Swaps out the actual source code module (component, store, CSS) in the running app without refreshing.
+Lets you keep app state while seeing code changes instantly.
+Works before Virtual DOM rendering — it’s about replacing the code that produces the Virtual DOM.
+
+📌 Analogy:
+HMR is like changing the paint color in the painter’s bucket mid-job without stopping work.
+
+2️⃣ How They Work Together
+When you save a file:
+HMR detects the file change.
+Dev server recompiles only that file (not the whole app).
+HMR sends the updated code to the browser.
+The browser replaces the module in memory.
+Vue re-renders the affected component using the Virtual DOM.
+Virtual DOM updates only the necessary parts of the DOM.
+
+3️⃣ Without HMR
+Dev server rebuilds the entire app.
+Browser reloads → app restarts from scratch.
+Virtual DOM only kicks in after the reload, but you’ve already lost state.
+
+✅ In short:
+Virtual DOM = Efficient UI updates after code runs.
+HMR = Efficient code updates without restarting the app.
+They solve different problems but together make development fast and state‑preserving.
+
+
+8)debouncing , throttling
+
+
+9)async,defer,prefetch,preload
+Prefetch is often used for lazy-loaded route components:
+const About = () => import(/* webpackPrefetch: true */ './views/About.vue');
+Preload is often used for critical chunks:
+const Home = () => import(/* webpackPreload: true */ './views/Home.vue');
+
+10)challenges faced in project
+
+11)debug in production
+12)env, dev dependencies, dependencies,gitigonre
+13)slots
+If the child is specifically tied to the parent’s logic → pass method as prop.
+If the child is reusable and shouldn’t care about parent logic → use $emit.
+If it’s deeply nested → use provide/inject.
+14)lifecycle
+15)agile methodologies
+16)prototypal inheritance
+17)event loop
+18)authentication
+19)local,session,cookie
+20)directives,modifiers
+21)promises,axios,fetch
+22)arrow and normal function
+23)image optimisation
