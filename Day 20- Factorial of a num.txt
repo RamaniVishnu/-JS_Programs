@@ -50,3 +50,10 @@ if(val < 2) return output;
 return factorial(val -1,val*output);
 }
 console.log(factorial(5));
+
+function Factorial(value,output = 1){
+    if(value < 0) return undefined;
+    if(value >=0 && value < 2) return output;
+    return Factorial(value - 1, value * output);
+}
+console.log(Factorial(5));
