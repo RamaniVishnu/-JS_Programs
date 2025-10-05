@@ -1,0 +1,42 @@
+What is emit?
+    To trigger an event in the parent component from a child component
+
+What happens if a parent component does not listen to an event emitted by a child component?
+ The event does not throw an error, instead the event is ignored
+
+How can you pass multiple pieces of data when emitting an event in Vue.js?
+	Pass an object containing all the data as the second argument to $emit
+
+
+What is the difference between $emit and $on in Vue.js??
+	$emit is used to trigger events, while $on is used to listen for events
+
+How can you validate the payload of an emitted event in Vue 3?
+	Using the emits option with a validation function
+
+
+
+
+
+typescript
+Redux
+Vuex
+
+Typescript
+1)never
+2)interface
+3)difference between type and interface
+4)how to ensure functional parameter is optional in TS? ans:- (?)
+5)readonly modifier
+6)generice
+7)keyof operator
+8)difference between'any' and 'unknown' types
+9)tuple type
+10)Partial<T> utility
+11)Pick<T,K> utility
+12)Record<K,T> utility
+13)Exclude<T,U>
+14)Omit<T,K>
+15)Readonly<T>
+
+
