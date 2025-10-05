@@ -1,0 +1,387 @@
+1)can computed async
+2)what is the syntax difference in calling action in compositional vs option api
+3)Vuex
+4)is mutation is async
+5)watchers
+6)watchers should call on component initialisation : ans :  use immediate:true attribute inside watcher
+7)can we use computed in another computed : ans: yes , explanation below
+8)next tick?
+9)how do you rerender a component :
+10)diff between action and mutation
+11) how do use constant import in component and use it in template ?
+12)vue 2 vs vue 3
+13)what they fix related reactivity in vue3
+14)what just token contains like roles and profile details
+15)complex application which framework you will use vu2,vue3,react
+16)reactivity vs ref
+17)auth guards in vue
+18)watch,watcheffect and computed
+19)what are the things improved in vue3
+20)why axios instead of fetch
+21)how will you handle errors in vue
+22)application performance
+ 
+
+answers
+1)can computed async
+Ah, I see where you're coming from—and it's a smart challenge. You're asking: "If computed properties can't be async, how come you're saying watchers can handle async logic?"
+
+Let’s break it down clearly:
+
+🔍 Why watch Works with Async Logic
+Unlike computed, which expects a synchronous return value, watch is designed to react to changes in reactive data and run side-effect logic—including asynchronous operations.
+
+✅ Watchers Can Be Async Because:
+They don’t return a value.
+
+They’re triggered by changes in reactive properties.
+
+You can define them as async functions and use await inside.
+
+🧪 Example: Fetching User Data When userId Changes
+js
+data() {
+  return {
+    userId: 1,
+    userData: null
+  };
+},
+watch: {
+  async userId(newId) {
+    const res = await fetch(`/api/users/${newId}`);
+    this.userData = await res.json();
+  }
+}
+🔧 What Happens:
+When userId changes, the watcher runs.
+
+It fetches new data asynchronously.
+
+Updates userData once the response arrives.
+
+This is something computed cannot do, because it expects a value to be returned immediately and cached.
+
+🧠 Summary: watch vs computed
+Feature	computed	watch
+Return value	Required (sync only)	Not required
+Async support	❌ Not supported	✅ Fully supported
+Side effects	❌ Discouraged	✅ Designed for side effects
+Use case	Derived state	Reacting to changes
+So yes—watch works for async tasks because it’s built for reacting and handling side effects, not for returning values. If you're building something like a dynamic dashboard, search filter, or API-driven form, watch is your best friend.
+
+Want help wiring up a real example in your app? I’d love to help you build it out.
+
+You're right to press on this—let’s unpack exactly why Vue’s watch works for asynchronous logic, while computed doesn’t.
+
+🔍 The Core Difference: Purpose and Behavior
+🧠 computed is for deriving values
+It expects a synchronous return.
+
+It’s cached and re-evaluates only when dependencies change.
+
+If you return a Promise, Vue won’t wait—it just sees an unresolved object.
+
+⚡ watch is for reacting to changes
+It doesn’t return anything.
+
+It’s designed to run side effects, including async operations.
+
+You can freely use async/await inside a watcher.
+
+✅ Why watch Works with Async
+Here’s a real-world example:
+
+js
+data() {
+  return {
+    userId: 1,
+    userData: null
+  };
+},
+watch: {
+  async userId(newVal) {
+    const res = await fetch(`/api/users/${newVal}`);
+    this.userData = await res.json();
+  }
+}
+🔧 What’s Happening:
+When userId changes, the watcher runs.
+
+It fetches data asynchronously.
+
+Updates userData when the response arrives.
+
+This works because Vue doesn’t care what the watcher returns—it just executes the function when the dependency changes.
+
+🧪 Why computed Fails with Async
+js
+computed: {
+  async userData() {
+    const res = await fetch('/api/user');
+    return await res.json(); // ❌ Vue won’t wait for this
+  }
+}
+Vue expects userData to return a value immediately, not a Promise. So it breaks the reactivity chain and gives you unpredictable results.
+
+🧭 Summary
+Feature	computed	watch
+Purpose	Derive reactive values	React to changes
+Return value	Required (sync only)	Not required
+Async support	❌ No	✅ Yes
+Side effects	❌ Discouraged	✅ Designed for them
+So when you need to fetch data, debounce input, or trigger animations based on reactive changes—watch is your reliable tool. Want help wiring this into a real component you're building? I can walk you through it.
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+4) is mutations async
+In Vuex, mutations are strictly synchronous. That’s by design—and it’s a key architectural choice.
+
+🔍 Why Mutations Must Be Synchronous
+Mutations directly modify the Vuex store’s state. Because Vuex uses a devtools-friendly state tracking system, it needs to:
+
+Take a “before” and “after” snapshot of the state.
+
+Log the mutation clearly for debugging and time-travel features.
+
+If mutations were asynchronous, the timing of state changes would become unpredictable, making debugging and tracking nearly impossible.
+
+🧪 What Happens If You Try Async in a Mutation?
+js
+mutations: {
+  async updateUser(state, payload) {
+    const data = await fetchUser(payload.id); // ❌ Not recommended
+    state.user = data;
+  }
+}
+This breaks Vuex’s core principle. The mutation won’t behave reliably, and devtools won’t be able to track the state change properly.
+
+✅ Use Actions for Async Logic
+Instead, Vuex provides actions for handling asynchronous operations. Actions can:
+
+Fetch data from APIs
+
+Wait for timeouts or user input
+
+Commit mutations once the async work is done
+
+js
+actions: {
+  async fetchUser({ commit }, userId) {
+    const data = await fetch(`/api/users/${userId}`);
+    commit('updateUser', data); // ✅ Mutation stays synchronous
+  }
+}
+🧭 Summary
+Feature	Mutation	Action
+Purpose	Direct state change	Handle async logic
+Sync/Async	✅ Synchronous only	✅ Supports async
+Devtools	Fully trackable	Triggers mutations
+So if you're working with API calls, timers, or any async logic—keep it in actions, and let mutations do the clean, synchronous state updates. Want help structuring your Vuex store for a real app? I’d be happy to sketch it out.
+
+
+
+
+
+Edit in a page
+is actions by default async?
+Not exactly—Vuex actions are not inherently asynchronous, but they can be. The key is: they support async logic, whereas mutations do not.
+
+🔍 What Does “Not Async by Default” Mean?
+When you define an action like this:
+
+js
+actions: {
+  increment({ commit }) {
+    commit('increment');
+  }
+}
+This is a synchronous action. It just commits a mutation immediately.
+
+But when you define it like this:
+
+js
+actions: {
+  async fetchUser({ commit }) {
+    const res = await fetch('/api/user');
+    const data = await res.json();
+    commit('setUser', data);
+  }
+}
+Now it’s an asynchronous action—because you’ve made it async and used await.
+
+🧠 Why Vuex Allows This
+Vuex actions are designed to:
+
+Handle side effects like API calls, timeouts, or async workflows.
+
+Commit mutations after async logic completes.
+
+Keep mutations pure and synchronous for better state tracking.
+
+So while actions aren’t “async by default,” they’re flexible enough to be either.
+
+🧭 Summary
+Feature	Mutations	Actions
+Sync only	✅ Yes	❌ Not required
+Async logic	❌ Not allowed	✅ Fully supported
+Purpose	Direct state change	Handle async + commit
+If you're building something like a login flow, data fetcher, or checkout process—actions are your go-to for async control. Want help structuring one for your app? I’d be happy to walk you through it.
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+7)can we use computed in another computed
+Yes, you can use one computed property inside another computed in Vue—and it’s actually quite common and totally valid.
+
+✅ How It Works
+Computed properties are just getter functions that return derived values based on reactive state. Since they behave like cached values, you can freely reference one computed inside another.
+
+🧪 Example:
+js
+computed: {
+  fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+  greeting() {
+    return `Hello, ${this.fullName}!`; // ✅ Uses another computed
+  }
+}
+In this case:
+
+fullName is computed from firstName and lastName.
+
+greeting depends on fullName, which itself is reactive.
+
+Vue tracks dependencies automatically, so if firstName or lastName changes, both fullName and greeting will update.
+
+⚠️ Things to Watch Out For
+Avoid circular references: Don’t let computed A depend on computed B if B also depends on A.
+
+Keep logic clean: If your computed properties start nesting too deeply or doing too much, consider breaking them into smaller pieces or using methods.
+
+🧠 Advanced Use Case
+In Vue 3 with Composition API, you can even do this with computed() from vue:
+
+js
+import { computed, ref } from 'vue';
+
+const firstName = ref('Alice');
+const lastName = ref('Smith');
+
+const fullName = computed(() => `${firstName.value} ${lastName.value}`);
+const greeting = computed(() => `Welcome, ${fullName.value}`);
+🧭 Summary
+Feature	Supported?	Notes
+Computed inside computed	✅ Yes	Vue tracks dependencies cleanly
+Circular references	❌ No	Will cause stack overflow
+Performance concerns	⚠️ Rare	Only if logic is too complex
+So yes—you can absolutely nest computed properties, and Vue will handle the reactivity for you. Want help designing a reactive chain for a dashboard or form logic? I’d love to help you wire it up.
+
+you have mentioned this Avoid circular references: Don’t let computed A depend on computed B if B also depends on A. does this example implies this computed: { fullName() { return `${this.firstName} ${this.lastName}`; }, greeting() { return `Hello, ${this.fullName}!`; // ✅ Uses another computed } }
+Great catch—and no, that example does not imply a circular reference. Let me explain why it’s safe and how circular references actually happen.
+
+✅ Why Your Example Is Fine
+js
+computed: {
+  fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+  greeting() {
+    return `Hello, ${this.fullName}!`;
+  }
+}
+Here’s what’s happening:
+
+fullName depends on firstName and lastName.
+
+greeting depends on fullName.
+
+This is a one-way dependency chain, which Vue handles perfectly. Vue tracks that greeting depends on fullName, and fullName depends on firstName and lastName. No problem.
+
+❌ What a Circular Reference Would Look Like
+A circular reference happens when two computed properties depend on each other, directly or indirectly.
+
+Example of a circular reference:
+js
+computed: {
+  a() {
+    return this.b + 1;
+  },
+  b() {
+    return this.a + 1;
+  }
+}
+This creates an infinite loop:
+
+a depends on b
+
+b depends on a
+
+Vue tries to evaluate both, but they keep calling each other endlessly
+
+This will crash your app or throw a stack overflow error.
+
+🧠 Rule of Thumb
+Pattern	Safe?	Why?
+A → B → C	✅ Yes	One-way chain
+A → B → A	❌ No	Circular reference
+A → B, B → C	✅ Yes	No back-reference to A
+So your fullName and greeting setup is totally safe—and actually a great example of clean computed composition. If you’re building more layered computed logic, I can help you structure it to stay reactive and efficient.
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------- 
+8)nexttick:-
+Absolutely! Let’s walk through a real-world frontend scenario where Vue.nextTick() (or this.$nextTick() in Options API) is not just helpful—it’s essential.
+
+🎯 Scenario: Auto-Focus an Input After Conditional Rendering
+Imagine you're building a modal dialog or a form section that appears only when a user clicks a button. You want to automatically focus an input field inside that newly rendered section.
+
+❌ Problem Without nextTick()
+If you try to focus the input immediately after changing the reactive state, the DOM hasn’t rendered the input yet—so this.$refs.inputField.focus() fails.
+
+✅ Solution Using nextTick()
+vue
+<template>
+  <div>
+    <button @click="openForm">Open Form</button>
+    <div v-if="showForm">
+      <input ref="inputField" placeholder="Type here..." />
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      showForm: false
+    };
+  },
+  methods: {
+    openForm() {
+      this.showForm = true;
+      this.$nextTick(() => {
+        this.$refs.inputField.focus(); // ✅ Works because DOM is updated
+      });
+    }
+  }
+};
+</script>
+🧪 Why This Matters
+Without nextTick(), Vue hasn’t inserted the <input> into the DOM yet, so this.$refs.inputField is undefined. With nextTick(), you wait until Vue finishes rendering, and then safely interact with the DOM.
+
+🧠 Other Common Use Cases
+Use Case	Why nextTick() Helps
+Scroll to a newly added element	Waits for DOM to render it
+Measure element size or position	Ensures layout is ready
+Trigger animations on new content	Avoids timing glitches
+Access $refs after v-if toggle	Guarantees DOM presence
+Run logic after slot content renders	Useful in dynamic UIs
