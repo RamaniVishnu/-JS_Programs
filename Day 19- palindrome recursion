@@ -19,7 +19,7 @@ console.log(palindrome("deified"));
 
 
 
-enhanced this code
+enhanced this code: 1
 const isPalindrome = str => {
     if (!str) return false; // Handle empty input
     const strLen = str.length;
@@ -30,3 +30,11 @@ console.log(isPalindrome('deified')); // true
 console.log(isPalindrome('racecar')); // true
 console.log(isPalindrome('hello'));   // false
 console.log(isPalindrome(''));        // false
+
+
+enhanced the code: 2
+function isPalindrome(val){
+    val=val.trim();
+    if(!val || val.length === 0 ) return false;
+    return val === val.split('').reverse().join('');    
+}
