@@ -12,7 +12,17 @@ Note:-if number is present in the form of string,decimal values also gives false
 let a=10;
 Number.isInteger(a);
 output : true
-2)if it is number in the form of string also gives false and alphabets gives true
+
+2)to check decimal value
+let a=10.3;
+Number.isInteger(a); //false
+Number.isFinite(a); //true
+
+let b='10.3';
+Number.isFinite(b); //false
+Number.isFinite(Number(b)); //true
+
+3)if it is number in the form of string also gives false and alphabets gives true
 isNaN(123)         // false
 isNaN('123')       // false
 isNaN('1e10000')   // false (This translates to Infinity, which is a number)
@@ -26,24 +36,24 @@ let a="10";
 isNaN(a)
 output: false
 
-3) to check string
+4) to check string
 let a="abc"
 isNaN(a);
 output: true
 
-4) to check it is an array
+5) to check it is an array
 let a=["1","a"];
 Array.isArray(a);
 output: true
 
-5) to check if it is an object
+6) to check if it is an object
 let a={
 abc:"123"
 }
 Array.isArray(a)
 output: false
 
-6) to check if it is an object and not an array or string or number or boolean
+7) to check if it is an object and not an array or string or number or boolean
 let a={}
 console.log(typeof a === "object" && !Array.isArray(a)); // return true only if it is an object and false of rest of the types
 let b=[]
