@@ -8,7 +8,7 @@ vvvimp => 0, negative values, negative decimal value <=""(empty string) will giv
 1,positive values,positive decimal values <=""(empty string) will give false
 A)Verification Of Types
 1)to check number, if number returns true or else false.
-Note:-if number is present in the form of string,gives false
+Note:-if number is present in the form of string,decimal values also gives false
 let a=10;
 Number.isInteger(a);
 output : true
