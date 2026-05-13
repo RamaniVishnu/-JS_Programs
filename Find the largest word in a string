@@ -85,4 +85,14 @@ function largestWord(words){
 console.log(largestWord(sentence))
 
 
+//enhanced code
+function largestWords(sentence){
+let word = sentence.trim().split(' '); //space split
+let max = Math.max(...word.map(w=>w.length));
+return word.filter(w=>w.length === max);
+}
+let sentence ="Write , Edit Online and Run your code using JS  Compil ";
+console.log(largestWords(sentence));
+}
+
 
