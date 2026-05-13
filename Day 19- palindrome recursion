@@ -35,6 +35,6 @@ console.log(isPalindrome(''));        // false
 enhanced the code: 2
 function isPalindrome(val){
     val=val.trim();
-    if(!val || val.length === 0 ) return false;
+    if(!val) return false;
     return val === val.split('').reverse().join('');    
 }
