@@ -85,14 +85,51 @@ function largestWord(words){
 console.log(largestWord(sentence))
 
 
-//enhanced code
+//enhanced code to get the all largest word
 function largestWords(sentence){
 let word = sentence.trim().split(' '); //space split
 let max = Math.max(...word.map(w=>w.length));
 return word.filter(w=>w.length === max);
 }
 let sentence ="Write , Edit Online and Run your code using JS  Compil ";
-console.log(largestWords(sentence));
+console.log(largestWords(sentence)); 
+output: ['Online','Compil']
+
+if suppose length is asked
+function largestWords(sentence){
+let word = sentence.trim().split(' '); //space split
+let max = Math.max(...word.map(w=>w.length));
+let result = word.filter(w=>w.length === max);
+return {
+    word: result,
+    length: max
 }
+}
+let sentence ="Write , Edit Online and Run your code using JS  Compil ";
+console.log(largestWords(sentence)); 
+output: { word: [ 'Online', 'Compil' ], length: 6 }
+
+//enhanced code to get the first largest word
+function largestWords(sentence){
+let word = sentence.trim().split(' '); //space split
+return word.reduce((currentW,largestW)=> largestW.length > currentW.length ? largestW : currentW); 
+}
+let sentence ="Write , Edit Online and Run your code using JS  Compil ";
+output: Online
+console.log(largestWords(sentence));
+
+
+if suppose length is asked
+function largestWords(sentence){
+let word = sentence.trim().split(' '); //space split
+let result=word.reduce((currentW,largestW)=> largestW.length > currentW.length ? largestW : currentW);
+return {
+    word: result,
+    length: result.length
+}
+}
+let sentence ="Write , Edit Onlin and Run your code using JS  Compil ";
+console.log(largestWords(sentence));
+output: { word: 'Compil', length: 6 }
 
 
