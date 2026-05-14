@@ -58,3 +58,31 @@ let a = {
 
 let sortedA = sortObjectByAge(a);
 console.log(sortedA);
+
+//enhanced code
+const sortObjectByAge = (obj, order = 'desc') =>
+    Object.fromEntries(
+        Object.entries(obj).sort(([, a], [, b]) =>
+            order === 'asc'
+                ? a.age - b.age
+                : b.age - a.age
+    )
+);
+    
+    
+    let data = {
+    teenage: {"name": "ramani", "age": 25},
+    toddler: {"name": "rama", "age": 20},
+    aged: {"name": "ram", "age": 40}
+};
+
+console.log(sortObjectByAge(a))
+
+v.v.v.v.v.imp Explanation
+sort(([, a], [, b])  is similar to 
+console.log(Object.entries(data).sort((a,b)=>{
+    console.log('a',a); //a->[ 'teenage', { name: 'ramani', age: 25 } ] to access age, we use a[1].age rather than this enhanced code is using 
+    destructing the a value is in Key,value format which is ['teenage'] is key  and { name: 'ramani', age: 25 } is value so to ignore the teenage 
+    as we need only age so we are using [ ,a] where a indicates the { name: 'ramani', age: 25 } thats why in next line we are using a.age
+    console.log('b',b)
+}))
