@@ -76,7 +76,7 @@ const sortObjectByAge = (obj, order = 'desc') =>
     aged: {"name": "ram", "age": 40}
 };
 
-console.log(sortObjectByAge(a))
+console.log(sortObjectByAge(data))
 
 v.v.v.v.v.imp Explanation
 sort(([, a], [, b])  is similar to 
