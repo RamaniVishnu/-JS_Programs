@@ -52,3 +52,148 @@ arr.forEach((elem, index) => {
 });
 
 console.log(newArr);
+
+
+//enhanced code way of writing logic
+1)Competition Ranking
+output: 1 2 3 3 5
+2) Dense Ranking
+output: 1 2 3 3 4
+
+1)Competition Ranking
+const competitionRanking = data => {
+
+    let rank = 1;
+    let prevScore = null;
+
+    return [...data]
+        .map(([name, score]) => ({ name, score }))
+        .sort((a, b) => b.score - a.score)
+        .map((emp, index) => {
+
+            if (
+                prevScore !== null &&
+                emp.score < prevScore
+            ) {
+                rank = index + 1;
+            }
+
+            prevScore = emp.score;
+
+            return {
+                ...emp,
+                rank
+            };
+        });
+};
+
+console.log(competitionRanking(arr));
+
+2)Dense Ranking
+const denseRanking = data => {
+
+    let rank = 1;
+    let prevScore = null;
+
+    return [...data]
+        .map(([name, score]) => ({ name, score }))
+        .sort((a, b) => b.score - a.score)
+        .map(emp => {
+
+            if (
+                prevScore !== null &&
+                emp.score < prevScore
+            ) {
+                rank++;
+            }
+
+            prevScore = emp.score;
+
+            return {
+                ...emp,
+                rank
+            };
+        });
+};
+
+console.log(denseRanking(arr));
+
+
+
+v.v.v.v.imp: 
+.map(([name, score]) => ({ name, score }))
+explain
+Step-by-step Breakdown
+🔹 Part 1 → .map()
+map() loops through array and returns:
+
+transformed array
+🔹 Example
+const arr = [1,2,3];
+arr.map(x => x * 2);
+returns:
+[2,4,6]
+
+🔹 In your case
+Input array:
+[
+  ['manager', 40],
+  ['developer', 10]
+]
+Each element is itself an array.
+
+🔹 Part 2 → ([name, score])
+This is:
+array destructuring
+🔹 Without destructuring
+Normally you would write:
+.map(emp => ({
+   name: emp[0],
+   score: emp[1]
+}))
+🔹 With destructuring
+([name, score])
+means:
+const name = emp[0];
+const score = emp[1];
+
+automatically.
+🔹 Example
+Suppose current element is:
+['manager', 40]
+Then:
+([name, score])
+becomes:
+name = 'manager'
+score = 40
+
+🔹 Part 3 → => ({ name, score })
+This returns an object.
+🔹 Why parentheses are needed
+Arrow functions confuse:
+object {}
+with
+function body {}
+So this:
+=> ({ name, score })
+means:
+return object
+
+Without parentheses:
+=> { name, score }
+JavaScript thinks:
+function body
+and returns undefined.
+
+🔹 Part 4 → { name, score }
+This is:
+object property shorthand
+🔹 Equivalent long version
+{
+   name: name,
+   score: score
+}
+🔹 Modern shorthand
+{ name, score }
+
+Cleaner ES6 syntax.
