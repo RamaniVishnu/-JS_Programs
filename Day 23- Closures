@@ -35,3 +35,20 @@ console.log(demo());
 console.log(demo());
 console.log(demo());
 console.log(demo());
+
+
+//enhanced code
+function Closure(...values){
+let index=0
+return ()=>{                 // (or) return function (){
+const value = values[index];
+index = (index + 1) % values.length;
+return value
+}
+}
+const demo=Closure('1','2','3','4');
+console.log(demo());
+console.log(demo());
+console.log(demo());
+console.log(demo());
+console.log(demo());
