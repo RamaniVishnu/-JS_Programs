@@ -22,7 +22,28 @@ function bracesBalance(str){
 }
 console.log(bracesBalance(test))
 
+//code using Set
+const isBalancedBrackets = str => {
+    const pairs = {
+        ')': '(',
+        '}': '{',
+        ']': '['
+    };
+    const openings = new Set(['(', '{', '[']);
+    const stack = [];
+    for (const char of str) {
+        if (openings.has(char)) {
+            stack.push(char);
+        }
+        else if (char in pairs) {
 
+            if (stack.pop() !== pairs[char]) {
+                return false;
+            }
+        }
+    }
+    return stack.length === 0;
+};
 
 
 2)no matter of the order
@@ -51,5 +72,33 @@ function hasEqualOpenCloseCounts(input) {
 const test1 = "[{]}{}"; // true (matching counts)
 const test2 = "[{{}]";  // false (mismatched counts)
 console.log(hasEqualOpenCloseCounts(test1)); // true
+
+
+//enhanced code
+const hasEqualOpenCloseCounts = input => {
+    const pairs = {
+        '(': ')',
+        '{': '}',
+        '[': ']'
+    };
+    const counts = {};
+    // Initialize counts
+    for (const bracket of Object.keys(pairs)) {
+        counts[bracket] = 0;
+        counts[pairs[bracket]] = 0;
+    }
+    // Count brackets
+    for (const char of input) {
+
+        if (char in counts) {
+            counts[char]++;
+        }
+    }
+    // Validate counts
+    return Object.entries(pairs)
+        .every(([open, close]) =>
+            counts[open] === counts[close]
+        );
+};
 console.log(hasEqualOpenCloseCounts(test2)); // false
 
