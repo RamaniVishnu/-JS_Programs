@@ -19,3 +19,16 @@ for(let i in count){
     }
 }
 console.log(result)
+
+//enhanced code
+const findWinners = votes => {
+    const counts = votes.reduce((acc, v) => {
+        acc[v] = (acc[v] || 0) + 1;
+        return acc;
+    }, {});
+    const max = Math.max(...Object.values(counts));
+    return Object.keys(counts)
+        .filter(v => counts[v] === max);
+};
+let vote =["B","D","A","E","A","B","A","C","B","A","B"];
+console.log(findWinners(vote))
