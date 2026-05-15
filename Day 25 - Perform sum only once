@@ -17,3 +17,19 @@ console.log(SumOnce(2, 1)); // 3
 console.log(SumOnce(3, 4)); // value exists: 7
 console.log(SumOnce(1, 2)); // value exists: 3
 
+//enhanced code
+const cache = {};
+function createSumCache(a, b) {
+
+    const key = [a, b]
+        .sort((x, y) => x - y)
+        .join(':');
+
+    if (key in cache) {
+        return cache[key];
+    }
+
+    return cache[key] = a + b;
+}
+};
+
