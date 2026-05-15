@@ -102,3 +102,26 @@ const hasEqualOpenCloseCounts = input => {
 };
 console.log(hasEqualOpenCloseCounts(test2)); // false
 
+//much more enhanced version
+const hasEqualOpenCloseCounts = input => {
+    const counts = {};
+    for (const char of input) {
+        counts[char] = (counts[char] ?? 0) + 1;
+    }
+
+    return (                                                                           
+        (counts['('] ?? 0) === (counts[')'] ?? 0) &&
+        (counts['{'] ?? 0) === (counts['}'] ?? 0) &&
+        (counts['['] ?? 0) === (counts[']'] ?? 0)
+    ); 
+(or)
+return (
+        counts['('] === counts[')'] &&
+        counts['{'] === counts['}'] &&
+        counts['['] === counts[']']
+    );
+};
+const test1 = "[{]}{}"; // true (matching counts)
+const test2 = "[{{}]";  // false (mismatched counts)
+console.log(hasEqualOpenCloseCounts(test2)); // true
+
