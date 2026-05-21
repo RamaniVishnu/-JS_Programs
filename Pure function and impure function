@@ -1,0 +1,119 @@
+Pure function used for flattenArray
+const arr = [1, 2, ['a', 'b', [3, 4, [9, ['c', 'd']]]], [5, 6]];
+
+function flattenArray(arr) {
+    return arr.reduce((flat, item) => {
+        return flat.concat(
+            Array.isArray(item) ? flattenArray(item) : item
+        );
+    }, []);
+}
+
+console.log(flattenArray(arr));
+
+Let’s be precise:
+
+❌ Is this fully a pure function?
+
+Not strictly “pure” in the strongest sense of functional programming.
+
+But it is pure in behavior for normal usage because:
+A function is pure if:
+Same input → same output ✅
+No side effects (doesn’t modify external state) ⚠️
+✅ Why this is considered pure in practice
+function flattenArray(arr) {
+    return arr.reduce((flat, item) => {
+        return flat.concat(
+            Array.isArray(item) ? flattenArray(item) : item
+        );
+    }, []);
+}
+✔ It does NOT:
+mutate arr
+modify any external variable
+depend on global state
+✔ It only:
+reads input
+returns a new array
+
+So in interviews / day-to-day JS:
+👉 it’s called a pure function
+⚠️ The subtle caveat (why you're thinking correctly)
+
+It uses recursion:
+flattenArray(item)
+So:
+
+It depends only on input values
+But internally it creates new stack frames
+
+Still:
+👉 recursion does NOT break purity
+
+❗ When it would NOT be pure
+If we did this:
+
+impure function example
+let result = [];
+function flattenArray(arr) {
+    arr.forEach(i => {
+        if (Array.isArray(i)) flattenArray(i);
+        else result.push(i); // ❌ side effect
+    });
+}
+
+Now it's impure because:
+
+modifies external result
+output depends on hidden state
+🧠 Simple rule to remember
+Version	                              Pure                              Why
+reduce + return new array	             ✅                         Yes	no mutation
+global push() version	                 ❌                         No	side effects
+mutating input array	                 ❌                         No	breaks input
+🔥 Final takeaway
+
+Your confusion is valid:
+
+👉 This function is pure in output behavior, but not “mathematically strict pure FP” in the abstract sense.
+
+
+
+You asked for:
+iterative (no recursion)
+pure (no external mutation)
+memory-safe / production-style
+
+Here are 3 clean approaches, from practical → advanced.
+
+1. ✅ Iterative Stack-Based (Recommended in interviews)
+
+No recursion, no global variables, fully pure.
+
+function flattenArray(arr) {
+    const stack = [...arr];
+    const result = [];
+
+    while (stack.length) {
+        const item = stack.pop();
+
+        if (Array.isArray(item)) {
+            stack.push(...item);
+        } else {
+            result.push(item);
+        }
+    }
+
+    return result.reverse();
+}
+
+const arr = [1, 2, ['a', 'b', [3, 4, [9, ['c', 'd']]]], [5, 6]];
+
+console.log(flattenArray(arr));
+Why this is good
+❌ no recursion (avoids call stack overflow)
+❌ no global variables
+❌ no mutation of input
+✅ O(n) time
+✅ widely used in real systems
