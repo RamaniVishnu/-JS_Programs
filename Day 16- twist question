@@ -122,3 +122,24 @@ console.log(updated) // [
   [ 'address', 'your address' ],
   [ 'age', 'my Age' ]
 ]
+
+
+
+What is the output of this program?
+function outer() {
+  var arr = [];
+
+  for (var i = 0; i < 3; i++) {
+    arr.push(function () {
+      console.log(i);
+    });
+  }
+
+  return arr;
+}
+
+const result = outer();
+
+result[0]();
+result[1]();
+result[2]();
