@@ -88,3 +88,53 @@ for(let i in count){
 return arr;
 }
 console.log(uniq())
+
+
+//enhanced code for 3 gives frequency
+let arr= [1,2,3,72,3,2];
+function unique(arr){
+    let result={};
+    for(let i of arr){
+          result[i] = (result[i] || 0) + 1;
+    }
+    return result;
+}
+console.log('unique..',unique(arr))
+
+//enhanced code for 4 for unique based on frequency of 1
+let arr= [2,-4,5,-3,6,7,8,10,2,5,1];
+function unique(arr){
+    let result={}; (or)   let result = new Map();
+    let output=[];
+    for(let i of arr){                          
+          result[i] = (result[i] || 0) + 1;      (or)      result.set(i,(result.get(i) || 0) + 1);
+    }
+    console.log('result',result)
+    for(let i in result) {
+        if(result[i] === 1){
+            output.push(i)
+        }
+    }
+    return output;                              (or)     arr.filter(key=>result.get(key) === 1); 
+}
+console.log('unique..',unique(arr))
+
+(or)
+let arr= [2,-4,5,-3,6,7,8,10,2,5,1];
+function unique(arr){
+    let newMap = new Map();
+    let output=[];
+    for(let key of arr){
+          newMap.set(key,(newMap.get(key) || 0) + 1);
+    }
+    
+    return arr.filter((key)=>newMap.get(key) === 1);
+}
+console.log('unique..',unique(arr))
+Why Map is better
+a)Uses Map instead of plain object
+    - safer for numeric keys
+    - preserves types
+b)Keeps original order
+c)More readable
+d)Avoids converting numbers to strings (for...in on objects does that)
