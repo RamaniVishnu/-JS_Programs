@@ -46,3 +46,27 @@ function findAllPairsWithIndexes(arr,target){
 let a = [2, 4, 5, 3, 6, 7, 8, 10, 2, 5, 1];
 let targetValue = 10;
 console.log(findAllPairsWithIndexes(a, targetValue));
+
+
+
+//not enhanced but modified code
+function findAllTripletsWithIndexes(arr, target) {
+    const result = [];
+    for (let i = 0; i < arr.length - 2; i++) {
+        for (let j = i + 1; j < arr.length - 1; j++) {
+            for (let k = j + 1; k < arr.length; k++) {
+                const sum = arr[i] + arr[j] + arr[k];
+                if (sum === target) {
+                    result.push({
+                        pair: [arr[i], arr[j], arr[k]],
+                        index: [i, j, k]
+                    });
+                }
+            }
+        }
+    }
+    return result.length ? result : 'No triplet found';
+}
+const arr = [2, 4, 5, 3, 6, 7, 8, 10, 2, 5, 1];
+const target = 10;
+console.log(findAllTripletsWithIndexes(arr, target));
