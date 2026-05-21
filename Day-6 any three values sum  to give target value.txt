@@ -45,3 +45,28 @@ for(let i=0;i<a.length;i++){
 }
 
 }
+
+
+//more enhanced code
+logic utilised here is:
+a + b + c = target;
+c= target - a - b; ---> third = target - arr[i] - arr[j];
+
+const arr = [2, -4, 5, -3, 6, 7, 8, 10, 2, 5, 1];
+const target = 10;
+function findTriplets(arr, target) {
+    const result = [];
+    for (let i = 0; i < arr.length - 2; i++) {
+        const seen = new Set();
+        for (let j = i + 1; j < arr.length; j++) {
+            const third = target - arr[i] - arr[j];
+            if (seen.has(third)) {
+                result.push([arr[i], arr[j], third]);
+            }
+            seen.add(arr[j]);
+        }
+    }
+    return result;
+}
+
+console.log(findTriplets(arr, target));
