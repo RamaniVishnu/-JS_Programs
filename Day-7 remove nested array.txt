@@ -49,3 +49,20 @@ let newArray = [];
  }
  flattenArray(arr)
  console.log(newArray)
+
+
+//enhanced code, pure function, reusable
+function flatArray(data) { 
+    let result = []; 
+    data.forEach((elem) => { 
+        if (Array.isArray(elem)) { 
+            result = result.concat(flatArray(elem));
+        }
+        else {
+        result.push(elem);
+        }
+        });
+        return result; 
+    
+}
+console.log(flatArray(arr))
