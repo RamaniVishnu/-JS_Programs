@@ -62,7 +62,7 @@ console.log(sortedA);
 //enhanced code
 const sortObjectByAge = (obj, order = 'desc') =>
     Object.fromEntries(
-        Object.entries(obj).sort(([, a], [, b]) =>order === 'asc'? a.age - b.age : b.age - a.age
+        Object.entries(obj).sort(([, a], [, b]) =>order === 'asc'?(a.age ?? 0) - (b.age ?? 0) : (b.age ?? 0) - (a.age ?? 0))
     )
 );
     
