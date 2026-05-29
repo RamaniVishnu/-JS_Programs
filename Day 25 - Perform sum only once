@@ -22,7 +22,7 @@ const cache = {};
 function createSumCache(a, b) {
 
     const key = [a, b]
-        .sort((x, y) => x - y)
+        .sort((x, y) => x - y)     (or) let key = a > b ? `${a}:${b}` : `${b}:${a}`;
         .join(':');
 
     if (key in cache) {
