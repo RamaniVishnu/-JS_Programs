@@ -19,3 +19,14 @@ for(var i=10;i>0;i--){
     }
     x(i)
 }
+
+//enhanced code without using decrement operator
+for(let i=0;i<5;i++){
+    setTimeout(()=>console.log(i),(4 - i) * 1000)
+}
+for(var i=0;i<5;i++){
+    function x(y){
+    setTimeout(()=>console.log(y),(4 - y) * 1000)
+    }
+    x(i)
+}
