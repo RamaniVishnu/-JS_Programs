@@ -66,8 +66,7 @@ const competitionRanking = data => {
     let rank = 1;
     let prevScore = null;
 
-    return [...data]
-        .map(([name, score]) => ({ name, score }))
+    return data.map(([name, score]) => ({ name, score }))
         .sort((a, b) => b.score - a.score)
         .map((emp, index) => {
 
@@ -95,8 +94,7 @@ const denseRanking = data => {
     let rank = 1;
     let prevScore = null;
 
-    return [...data]
-        .map(([name, score]) => ({ name, score }))
+    return data.map(([name, score]) => ({ name, score }))
         .sort((a, b) => b.score - a.score)
         .map(emp => {
 
