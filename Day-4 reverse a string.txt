@@ -18,3 +18,15 @@ for(let i=a.length;i>=0;i--){
     b.push(a[i])
 }
 console.log(b.join(''))
+
+enhanced code to reverse each word
+let str= "hii, I am Ramani" 
+function reverseStr(str){
+    let result=str
+                  .split(' ')
+                  .map((elem)=>elem.split('').reverse().join(''))
+                  .join(' ');
+    return result;
+    
+}
+console.log(reverseStr(str)) //output: ,iih I ma inamaR
