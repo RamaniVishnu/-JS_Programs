@@ -39,3 +39,35 @@ function nearestNum(arr, target) {
             : closest
     );
 }
+
+//suppose two values are asked
+function nearestTwoNums(arr, target) {
+    return arr.reduce(
+        (closest, current) => {
+            const distance = Math.abs(current - target);
+
+            if (distance < closest.firstDistance) {
+                closest.second = closest.first;
+                closest.secondDistance = closest.firstDistance;
+
+                closest.first = current;
+                closest.firstDistance = distance;
+            } else if (distance < closest.secondDistance) {
+                closest.second = current;
+                closest.secondDistance = distance;
+            }
+
+            return closest;
+        },
+        {
+            first: null,
+            second: null,
+            firstDistance: Infinity,
+            secondDistance: Infinity,
+        }
+    );
+}
+
+const result = nearestTwoNums(arr, target);
+
+console.log(result.first, result.second);
