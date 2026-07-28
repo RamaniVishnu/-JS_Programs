@@ -151,6 +151,31 @@ function maxlengthWord(data){
 return result;
     
 }
+
+To get second largest word
+function secondLargestWord(sentence) {
+  const words = sentence.trim().split(/\s+/);
+
+  const result = words.reduce(
+    (acc, word) => {
+      if (word.length > acc.First.length) {
+        // Current First becomes second largest
+        acc.second = acc.First;
+        acc.First = word;
+      } else if (
+        word.length > acc.second.length &&
+        word.length < acc.First.length
+      ) {
+        acc.second = word;
+      }
+
+      return acc;
+    },
+    { First: "", second: "" }
+  );
+
+  return result.second;
+}
 console.log(maxlengthWord(sentence))
 
 
