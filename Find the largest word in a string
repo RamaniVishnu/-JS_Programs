@@ -132,4 +132,25 @@ let sentence ="Write , Edit Onlin and Run your code using JS  Compil ";
 console.log(largestWords(sentence));
 output: { word: 'Compil', length: 6 }
 
+all the largest words //enhanced code
+let sentence ="Run Write , Edit Online and Run your code using JS  Compil ";
+function maxlengthWord(data){
+    const result = sentence
+  .trim()
+  .split(/\s+/)
+  .reduce((acc, word) => {
+    if (word.length > acc.max) {
+      acc.max = word.length;
+      acc.words = [word];
+    } else if (word.length === acc.max) {
+      acc.words.push(word);
+    }
+    return acc;
+  }, { max: 0, words: [] });
+
+return result;
+    
+}
+console.log(maxlengthWord(sentence))
+
 
