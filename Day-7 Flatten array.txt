@@ -51,7 +51,7 @@ let newArray = [];
  console.log(newArray)
 
 
-//enhanced code, pure function, reusable
+//enhanced code, pure function, reusable   ->concat() creates new array everytime so going with 2 functions is best practice 
 function flatArray(data) { 
     let result = []; 
     data.forEach((elem) => { 
@@ -66,3 +66,15 @@ function flatArray(data) {
     
 }
 console.log(flatArray(arr))
+
+//enhance code
+function flattenArray(data){
+    const result=[];
+    function helper(values){
+        values.forEach((elem)=>Array.isArray(elem) ? helper(elem) : result.push(elem))
+        
+    }
+    helper(data);
+    return result;
+}
+console.log(flattenArray(arr))
