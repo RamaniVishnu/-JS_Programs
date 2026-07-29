@@ -51,3 +51,27 @@ for(let i=0;i<arr.length;i++){
 }
 
 console.log(result);
+
+//updated code
+let arr = [2, "b",0.9, 4, "d", 3,7.4, "a","10", "c", "e", 5, 1];
+function arrangeArr(data){
+    let numArr=[];
+    let strArr=[];
+    let newArr=[];
+   
+    data.forEach((elem)=>{
+        Number.isFinite(Number(elem)) ? numArr.push(elem) : strArr.push(elem)
+    })
+    for(let i=0;i<arr.length;i++){
+        if(i <numArr.length ) {
+            newArr.push(numArr[i])
+        }
+        if(i < strArr.length ) {
+            newArr.push(strArr[i])
+        }
+    }
+    return newArr;
+    
+    
+    
+}
