@@ -1,0 +1,25 @@
+let a=[
+    {
+        name: 'ramani'
+    },{
+        age: '40'
+    }]
+let b =[...a];
+b[0].name="selfie"
+console.log(a,b); //[ { name: 'selfie' }, { age: '40' } ] [ { name: 'selfie' }, { age: '40' } ]
+b[0] = {name: 'Amutha'}
+console.log(a,b); //[ { name: 'selfie' }, { age: '40' } ] [ { name: 'Amutha' }, { age: '40' } ]
+
+let c =['1',2,3];
+let d = [...c];
+d[1]= 5;
+console.log(c,d);  // [ '1', 2, 3 ] [ '1', 5, 3 ]
+
+let e ={
+    name: 'aaa',
+    age:49,
+    email: 'test@gmail.com'
+}
+let f={...e};
+f.email = "mail@gmail.com"
+console.log(e,f); //{ name: 'aaa', age: 49, email: 'test@gmail.com' } { name: 'aaa', age: 49, email: 'mail@gmail.com' }
