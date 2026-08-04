@@ -22,3 +22,28 @@ for(let elem of str){
     }
 }
 console.log(result.length)
+
+
+let str = "abbbcabcdefef";
+
+function longestValue(data) {
+    if (!data) return "";
+
+    let output = "";
+    let count = 1;
+
+    for (let i = 1; i <= data.length; i++) {
+        if (data[i] === data[i - 1]) {
+            count++;
+        } else {
+            output += data[i - 1] + count;
+            count = 1;
+        }
+    }
+
+    return output;
+}
+
+console.log(longestValue(str));
+
+Output: a1b3c1a1b1c1d1e1f1e1f1
