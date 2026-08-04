@@ -19,13 +19,17 @@ console.log(palindrome("deified"));
 
 
 
-enhanced this code: 1
-const isPalindrome = str => {
-    if (!str) return false; // Handle empty input
-    const strLen = str.length;
-    if (strLen < 3) return true;
-    return str[0] === str[strLen - 1] && isPalindrome(str.slice(1, strLen - 1));
+enhanced this code: 1 without using built in methods
+let a="Mom";
+function isPalindrome(data){
+    if(!data.trim()) return false;
+    function check(str){
+        if(str.length <= 1) return true;
+        return str[0] === str[str.length - 1] && check(str.slice(1,-1))
+    }
+    return check(data)
 };
+console.log(isPalindrome(a.toLowerCase())) //true;
 console.log(isPalindrome('deified')); // true
 console.log(isPalindrome('racecar')); // true
 console.log(isPalindrome('hello'));   // false
