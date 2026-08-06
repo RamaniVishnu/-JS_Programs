@@ -1,0 +1,11 @@
+function demoOne(callback){
+    console.log('one....');
+  async function fn(){
+   return await callback();
+  }
+ return fn();
+}
+function demoTwo(){
+    console.log('two')
+}
+console.log(demoOne(demoTwo))
