@@ -152,30 +152,33 @@ return result;
     
 }
 
-To get second largest word
-function secondLargestWord(sentence) {
-  const words = sentence.trim().split(/\s+/);
 
-  const result = words.reduce(
-    (acc, word) => {
-      if (word.length > acc.First.length) {
-        // Current First becomes second largest
-        acc.second = acc.First;
-        acc.First = word;
-      } else if (
-        word.length > acc.second.length &&
-        word.length < acc.First.length
-      ) {
-        acc.second = word;
-      }
 
-      return acc;
-    },
-    { First: "", second: "" }
-  );
+//to get any length largest elem, by providing the lenght index to point to which largest word you are refering, for example i want secondlargest so pointed to index 1 in lengths
+let sentence ="Write , Edit Onlin and Run your code using JS  Compil ";
 
-  return result.second;
+function secondLargestWords(sentence) {
+    const words = sentence.trim().split(/\s+/);
+
+    // Get unique word lengths
+    const lengths = [...new Set(words.map(word => word.length))];
+
+    // Sort lengths from largest to smallest
+    lengths.sort((a, b) => b - a);
+
+    // No second-largest length
+    if (lengths.length < 2) {
+        return [];
+    }
+
+    const secondLargestLength = lengths[1];
+
+    // Return ALL words having second-largest length
+    return words.filter(word => word.length === secondLargestLength);
 }
-console.log(maxlengthWord(sentence))
+
+console.log(secondLargestWords(sentence));
+
+
 
 
