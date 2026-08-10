@@ -9,3 +9,20 @@ function demoTwo(){
     console.log('two')
 }
 console.log(demoOne(demoTwo))
+
+
+//enhanced code
+function fn(){
+    console.log('callback fn');
+    throw new Error('error....')                // for success return 'success' then of promise will execute
+ }
+
+function demo(callback){
+    async function demoTwo(){
+      return await callback();
+    }
+ return demoTwo();
+}
+demo(fn)
+.then((res)=>console.log(res))
+.catch((err)=>console.log('err',err.message))
