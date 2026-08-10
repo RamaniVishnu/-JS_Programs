@@ -71,3 +71,26 @@ function nearestTwoNums(arr, target) {
 const result = nearestTwoNums(arr, target);
 
 console.log(result.first, result.second);
+
+//suppose only one value along with distance is asked
+function nearestNum(arr, target) {
+    return arr.reduce(
+        (closest, current) => {
+            const distance = Math.abs(current - target);
+
+            if (distance < closest.distance) {
+                closest.number = current;
+                closest.distance = distance;
+            }
+
+            return closest;
+        },
+        {
+            number: null,
+            distance: Infinity
+        }
+    );
+}
+
+const result = nearestNum(arr1, 6);
+console.log(result);
