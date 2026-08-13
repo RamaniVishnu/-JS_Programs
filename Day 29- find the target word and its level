@@ -1,0 +1,39 @@
+function findValue(data, target, path = "root", level = 0) {
+  // If the current value matches the target
+  if (data === target) {
+    return [{
+      value: data,
+      path: path,
+      level: level
+    }];
+  }
+
+  // If it's an array
+  if (Array.isArray(data)) {
+    let results = [];
+
+    data.forEach((item, index) => {
+      results.push(
+        ...findValue(item, target, `${path}[${index}]`, level + 1)
+      );
+    });
+
+    return results;
+  }
+
+  // If it's an object
+  if (data !== null && typeof data === "object") {
+    let results = [];
+
+    for (const key in data) {
+      results.push(
+        ...findValue(data[key], target, `${path}.${key}`, level + 1)
+      );
+    }
+
+    return results;
+  }
+
+  // Primitive value that didn't match
+  return [];
+}
