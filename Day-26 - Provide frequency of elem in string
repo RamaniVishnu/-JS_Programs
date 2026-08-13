@@ -34,3 +34,24 @@ function getFrequency(val) {
 }
 console.log(getFrequency(str));
 
+
+//enhanced
+ let str="abbccccddeeefab";
+ function demo(data){
+    let count =1;
+    let output='';
+    for(let i=1;i<=data.length;i++){
+        if(data[i] === data[i - 1]){
+            count++;
+        }
+        else {
+            output+=data[i - 1]+count;
+            count=1
+        }
+    }
+
+    return output;
+
+ }
+ console.log(demo(str))
+
