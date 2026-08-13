@@ -34,6 +34,49 @@ function findValue(data, target, path = "root", level = 0) {
     return results;
   }
 
+
+const data = {
+  name: "John",
+  age: 25,
+  address: {
+    city: "Chennai",
+    pin: 600043
+  },
+  skills: [
+    "JavaScript",
+    "React",
+    {
+      language: "Python",
+      level: "advanced"
+    }
+  ],
+  projects: [
+    {
+      name: "Banking App",
+      technologies: ["JavaScript", "Java"]
+    }
+  ]
+};
+
+console.log(findValue(data, "JavaScript"));
+
+
   // Primitive value that didn't match
   return [];
 }
+
+
+output:
+[
+  {
+    value: "JavaScript",
+    path: "root.skills[0]",
+    level: 2
+  },
+  {
+    value: "JavaScript",
+    path: "root.projects[0].technologies[0]",
+    level: 4
+  }
+]
+
