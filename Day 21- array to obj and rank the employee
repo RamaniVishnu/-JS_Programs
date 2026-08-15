@@ -57,8 +57,11 @@ console.log(newArr);
 //enhanced code way of writing logic
 1)Competition Ranking
 output: 1 2 3 3 5
+if(prevScore !== null && emp.score < prevScore){
 2) Dense Ranking
-output: 1 2 3 3 4
+output: 1 2 3 4 5
+if(prevScore !== null && emp.score <= prevScore){
+
 
 1)Competition Ranking
 function Ranking(data){
