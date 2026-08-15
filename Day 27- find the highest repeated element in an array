@@ -32,3 +32,17 @@ const findWinners = votes => {
 };
 let vote =["B","D","A","E","A","B","A","C","B","A","B"];
 console.log(findWinners(vote))
+
+=========================(or)=========================================
+function highest(data){
+    let max =0;
+    let result = vote.reduce((acc,curr)=>{
+ acc[curr] = (acc[curr] || 0 ) + 1;
+        if(max < acc[curr]){
+        max = acc[curr];
+        }
+    return acc;
+    },{})
+    return Object.keys(result).filter((elem)=>result[elem]=== max);
+}
+console.log(highest(vote));
