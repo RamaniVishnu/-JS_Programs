@@ -61,60 +61,42 @@ output: 1 2 3 3 5
 output: 1 2 3 3 4
 
 1)Competition Ranking
-const competitionRanking = data => {
-
+function Ranking(data){
     let rank = 1;
     let prevScore = null;
+   let result = data.map(([name,score])=>({name,score}))
+    .sort((a,b)=>b.score - a.score)
+    .map((emp)=>{
+        if(prevScore !== null && emp.score < prevScore){
+            rank++;
+        }
+        prevScore = emp.score;
+        return {
+            ...emp,
+            rank
+        }
+    })
+return result;
 
-    return data.map(([name, score]) => ({ name, score }))
-        .sort((a, b) => b.score - a.score)
-        .map((emp, index) => {
-
-            if (
-                prevScore !== null &&
-                emp.score < prevScore
-            ) {
-                rank = index + 1;
-            }
-
-            prevScore = emp.score;
-
-            return {
-                ...emp,
-                rank
-            };
-        });
-};
-
-console.log(competitionRanking(arr));
 
 2)Dense Ranking
-const denseRanking = data => {
-
+function Ranking(data){
     let rank = 1;
     let prevScore = null;
+   let result = data.map(([name,score])=>({name,score}))
+    .sort((a,b)=>b.score - a.score)
+    .map((emp)=>{
+        if(prevScore !== null && emp.score <= prevScore){
+            rank++;
+        }
+        prevScore = emp.score;
+        return {
+            ...emp,
+            rank
+        }
+    })
+return result;
 
-    return data.map(([name, score]) => ({ name, score }))
-        .sort((a, b) => b.score - a.score)
-        .map(emp => {
-
-            if (
-                prevScore !== null &&
-                emp.score < prevScore
-            ) {
-                rank++;
-            }
-
-            prevScore = emp.score;
-
-            return {
-                ...emp,
-                rank
-            };
-        });
-};
-
-console.log(denseRanking(arr));
 
 
 
