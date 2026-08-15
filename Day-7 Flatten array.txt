@@ -95,4 +95,14 @@ function flattenArray(data,result=[]){
 }
 console.log(flattenArray(arr))
 
+//flatten array of object
+let a=[{name:'user1',skills:['skil1','skill2']},{name:'user2',skills:['skil3','skill4']},{name:'user3',skills:['skil5','skill6']}];
+
+function flatten(data,result=[]){
+data.forEach((elem)=>{
+    result.push(...elem.skills);
+})
+return result;
+}
+console.log(flatten(a))
 
