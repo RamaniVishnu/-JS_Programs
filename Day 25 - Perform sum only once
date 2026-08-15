@@ -33,3 +33,16 @@ function createSumCache(a, b) {
 }
 };
 
+
+//using map
+let cache =new Map();
+function SumOnce(a,b){
+    let key = a > b ? `${a}:${b}` : `${b}:${a}`;
+    if(cache.has(key)){
+        return `value exists ,${cache.get(key)}`;
+    }
+    let sum = a+b;
+    cache.set(key,sum);
+    return sum;
+
+}
